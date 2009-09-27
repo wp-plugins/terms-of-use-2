@@ -4,7 +4,7 @@ Donate link: http://blog.strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, plugin, wordpress, plugin, template
 Requires at least: 2.0
 Tested up to: 2.8.4
-Stable tag: 1.2
+Stable tag: 1.0
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
