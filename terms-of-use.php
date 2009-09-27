@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Terms of Use
-Plugin URI: http://blog.strategy11.com/terms-of-use
+Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
