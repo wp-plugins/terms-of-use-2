@@ -43,9 +43,9 @@ function tou_check(){
     global $user_ID, $user_level;
     if ($user_level == 10) return;
 
-    if(!get_usermeta($user_ID, 'terms_and_conditions') and !$_GET['page'] == 'terms-of-use/terms-and-conditions.php'){
+    if(!get_usermeta($user_ID, 'terms_and_conditions') and !$_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php'){
         $admin_page = (IS_WPMU)?('tools.php'):('admin.php');
-	    echo "<script type='text/javascript'>window.location='{$admin_page}?page=terms-of-use/terms-and-conditions.php' </script>";
+	    echo "<script type='text/javascript'>window.location='{$admin_page}?page=".TOU_PLUGIN_NAME."/terms-and-conditions.php' </script>";
     }
 }
 add_action('admin_head', 'tou_check');

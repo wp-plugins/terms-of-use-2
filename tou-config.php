@@ -1,6 +1,6 @@
 <?php
 define('TOU_PLUGIN_TITLE','Terms of Use');
-define('TOU_PLUGIN_NAME','terms-of-use');
+define('TOU_PLUGIN_NAME','terms-of-use-2');
 define('TOU_PATH',WP_PLUGIN_DIR.'/'.TOU_PLUGIN_NAME);
 define('TOU_URL',WP_PLUGIN_URL.'/'.TOU_PLUGIN_NAME);
 

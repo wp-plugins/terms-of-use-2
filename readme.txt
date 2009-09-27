@@ -42,3 +42,6 @@ Users can view the terms under the 'Tools' menu.
 1. The settings page.
 2. The agreement page. Privacy Policy has been left blank in the example.
 3. The welcome page seen after term acceptance.
+
+== Changelog ==
+1.1 Fixed folder name in config. 
