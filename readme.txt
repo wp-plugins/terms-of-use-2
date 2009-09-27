@@ -6,11 +6,11 @@ Requires at least: 2.0
 Tested up to: 2.8.4
 Stable tag: 1.0
 
-Forces all users except admins to agree to Terms and Conditions on first login.
+Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
 == Description ==
 
-Instead of adding Terms and Conditions to the signup page, this plugin hides the admin menu and presents all users except admins with your terms and conditions the first time they login. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
+Instead of adding Terms and Conditions to the signup page, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
 
 Features:
 1. Fully customizable Terms and Conditions, Privacy Policy and welcome message.
