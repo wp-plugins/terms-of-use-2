@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.4
+Version: 1.5
 */
 
 require_once('tou-config.php');
@@ -13,8 +13,8 @@ require_once('tou-config.php');
 function tou_menu(){
     global $user_ID, $user_level;
     
-    add_submenu_page((IS_WPMU)?('wpmu-admin.php'):('options-general.php'), 'Edit '. TOU_PLUGIN_TITLE, 'Edit '. TOU_PLUGIN_TITLE, 10, TOU_PATH.'/tou-settings.php'); 
-    add_dashboard_page(TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 0, TOU_PATH.'/terms-and-conditions.php');
+    add_submenu_page(TOU_ADMIN_EDIT_PAGE, 'Edit '. TOU_PLUGIN_TITLE, 'Edit '. TOU_PLUGIN_TITLE, 10, TOU_PATH.'/tou-settings.php'); 
+    add_submenu_page(TOU_ADMIN_PAGE, TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 0, TOU_PATH.'/terms-and-conditions.php');
 
     add_action('admin_head-'.TOU_PLUGIN_NAME.'/tou-settings.php', 'tou_admin_header');
     
