@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.5
+Version: 1.6
 */
 
 require_once('tou-config.php');
@@ -23,8 +23,16 @@ function tou_menu(){
         foreach ( $menu as $id => $data )
             unset($menu[$id]);
     }    
+    add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'tou_settings_link' );   
 }
 add_action('admin_menu', 'tou_menu');
+
+// Adds a settings link to the plugins page
+function tou_settings_link($links){
+    $settings_link = '<a href="'.TOU_ADMIN_EDIT_PAGE.'?page='.TOU_PLUGIN_NAME.'/tou-settings.php">' . __('Settings') . '</a>';
+    array_unshift( $links, $settings_link );
+    return $links;
+}
 
 function tou_tinymce(){
 	add_action( 'admin_print_footer_scripts', 'wp_tiny_mce', 25 );
@@ -57,17 +65,19 @@ function tou_date(){
 	else
 	    $tou_settings = get_option('tou_options');
 	
-	if ($tou_settings['show_date'] and get_usermeta($user_ID, 'terms_and_conditions')) {   
-        echo "<p class='description'>Agreed to site <a href='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php'>Terms & Conditions</a> on ". strftime('%B %d, %G', strtotime(get_usermeta($user_ID, 'terms_and_conditions'))) .".</p>";
+	if ($tou_settings['show_date'] and get_usermeta($user_ID, 'terms_and_conditions')){  
+        echo "<p class='description'>";
+        if ($tou_settings['initials'] and get_usermeta($user_ID, 'tou_initials'))
+            echo get_usermeta($user_ID, 'tou_initials') . " ";
+        echo "Agreed to site <a href='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php'>Terms & Conditions</a> on ". strftime('%B %d, %G', strtotime(get_usermeta($user_ID, 'terms_and_conditions'))) .".</p>";
     }
+    
 }
 add_action('show_user_profile', 'tou_date', 200);
 
 /*****************************STYLING*******************************/
 function tou_admin_header(){?>
-<style>
-    textarea{width:100%;}
-</style>
+<style>textarea{width:100%;}</style>
 <?
 }
 
@@ -81,7 +91,7 @@ function set_tou_defaults(){
     $agree = "By clicking \"I agree\" you are indicating that you have read and agree to the above Terms of Use and Privacy Policy.";
     $show_date = "checked='checked'";
     
-    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $site_name, 'agree' => $agree, 'show_date' => $show_date);
+    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $site_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false);
     
     if(IS_WPMU)
         add_site_option('tou_options', $tou_data);

@@ -1,7 +1,8 @@
 <?php
+    $message = '';
   // if the settings were changed save them
 	if($_POST and isset($_POST['terms'])){
-	    $tou_data = array('member_agreement' => $_POST['member_agreement'], 'terms' => $_POST['terms'], 'privacy_policy' => $_POST['privacy_policy'], 'welcome' => $_POST['welcome'], 'site_name' => $_POST['site_name'], 'agree' => $_POST['agree'], 'show_date' => $_POST['show_date']);
+	    $tou_data = array('member_agreement' => $_POST['member_agreement'], 'terms' => $_POST['terms'], 'privacy_policy' => $_POST['privacy_policy'], 'welcome' => $_POST['welcome'], 'site_name' => $_POST['site_name'], 'agree' => $_POST['agree'], 'show_date' => $_POST['show_date'], 'initials' => $_POST['initials']);
 		
         if(IS_WPMU)
             update_site_option('tou_options', $tou_data);
@@ -12,7 +13,7 @@
             global $wpdb;
             $wpdb->query( $wpdb->prepare("DELETE FROM $wpdb->usermeta WHERE meta_key = 'terms_and_conditions'") );
         }
-  
+        $message = "Your settings have been saved.";
 	}
 	
 	//Retrieve all the settings
@@ -27,7 +28,8 @@
     $welcome = stripslashes((($_POST and $_POST['welcome'] != null)?$_POST['welcome']:$tou_settings['welcome']));
     $site_name = stripslashes((($_POST and $_POST['site_name'] != null)?$_POST['site_name']:$tou_settings['site_name']));
     $agree = stripslashes((($_POST and $_POST['agree'] != null)?$_POST['agree']:$tou_settings['agree']));
-    $show_date = stripslashes((($_POST and $_POST['show_date'] != null)?$_POST['show_date']:$tou_settings['show_date']));
+    $show_date = stripslashes((($_POST)?$_POST['show_date']:$tou_settings['show_date']));
+    $initials = stripslashes((($_POST)?$_POST['initials']:$tou_settings['initials']));
 	
 	if(!$site_name)
 	    $site_name = get_option('blogname');
