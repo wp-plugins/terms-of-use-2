@@ -33,8 +33,7 @@ WordPress:
 1. Upload `terms-of-use` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to the 'Settings' menu and select 'Terms of Use' to customize settings.
-4. Select either 'Show on Checked' or 'Hide on Checked' from the drop-down and check the boxes.
-5. Users can view the terms under the 'Dashboard' menu.
+4. Users can view the terms under the 'Dashboard' menu.
 
 WPMU:
 Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to customize settings. 
