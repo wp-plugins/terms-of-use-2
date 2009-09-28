@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.6
+Version: 1.7
 */
 
 require_once('tou-config.php');
@@ -93,10 +93,14 @@ function set_tou_defaults(){
     
     $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $site_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false);
     
-    if(IS_WPMU)
-        add_site_option('tou_options', $tou_data);
-    else
-        add_option('tou_options', $tou_data);
+    
+    if(IS_WPMU){
+        if (!get_site_option('tou_options'))
+            add_site_option('tou_options', $tou_data);
+    }else{
+        if (!get_option('tou_options'))
+            add_option('tou_options', $tou_data);
+    }
 }
 register_activation_hook(__FILE__,'set_tou_defaults');
 
