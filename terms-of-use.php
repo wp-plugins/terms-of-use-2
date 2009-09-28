@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.3
+Version: 1.4
 */
 
 require_once('tou-config.php');
@@ -13,12 +13,12 @@ require_once('tou-config.php');
 function tou_menu(){
     global $user_ID, $user_level;
     
-    add_submenu_page((IS_WPMU)?('wpmu-admin.php'):('options-general.php'), TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 10, TOU_PATH.'/tou-settings.php'); 
-    add_submenu_page((IS_WPMU)?('tools.php'):('admin.php'), TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 1, TOU_PATH.'/terms-and-conditions.php');
+    add_submenu_page((IS_WPMU)?('wpmu-admin.php'):('options-general.php'), 'Edit '. TOU_PLUGIN_TITLE, 'Edit '. TOU_PLUGIN_TITLE, 10, TOU_PATH.'/tou-settings.php'); 
+    add_dashboard_page(TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 0, TOU_PATH.'/terms-and-conditions.php');
 
     add_action('admin_head-'.TOU_PLUGIN_NAME.'/tou-settings.php', 'tou_admin_header');
     
-    if (!get_usermeta($user_ID, 'terms_and_conditions') and $user_level < 10){
+    if (!get_usermeta($user_ID, 'terms_and_conditions') and $user_level < 10 and !$_POST){
         global $menu;
         foreach ( $menu as $id => $data )
             unset($menu[$id]);
@@ -44,8 +44,7 @@ function tou_check(){
     if ($user_level == 10) return;
 
     if(!get_usermeta($user_ID, 'terms_and_conditions') and !$_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php'){
-        $admin_page = (IS_WPMU)?('tools.php'):('admin.php');
-	    echo "<script type='text/javascript'>window.location='{$admin_page}?page=".TOU_PLUGIN_NAME."/terms-and-conditions.php' </script>";
+	    die("<script type='text/javascript'>window.location='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php' </script>");
     }
 }
 add_action('admin_head', 'tou_check');
@@ -58,11 +57,8 @@ function tou_date(){
 	else
 	    $tou_settings = get_option('tou_options');
 	
-	if ($tou_settings['show_date']) {   
-        $admin_page = (IS_WPMU)?('tools.php'):('admin.php');
-    
-        if (get_usermeta($user_ID, 'terms_and_conditions'))
-            echo "<p class='description'>Agreed to site <a href='{$admin_page}?page=terms-of-use/terms-and-conditions.php'>Terms & Conditions</a> on ". strftime('%B %d, %G', strtotime(get_usermeta($user_ID, 'terms_and_conditions'))) .".</p>";
+	if ($tou_settings['show_date'] and get_usermeta($user_ID, 'terms_and_conditions')) {   
+        echo "<p class='description'>Agreed to site <a href='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php'>Terms & Conditions</a> on ". strftime('%B %d, %G', strtotime(get_usermeta($user_ID, 'terms_and_conditions'))) .".</p>";
     }
 }
 add_action('show_user_profile', 'tou_date', 200);

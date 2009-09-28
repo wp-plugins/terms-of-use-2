@@ -28,7 +28,7 @@ if($_POST and $_POST['terms-and-conditions']){
     echo "<h2>Welcome</h2>";
     require('views/nav.php');
     echo $welcome;
-}else{    
+}else{   
   	$terms = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['terms'])));
 	$privacy_policy = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['privacy_policy'])));
 	$member_agreement = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['member_agreement'])));
@@ -48,7 +48,7 @@ if($_POST and $_POST['terms-and-conditions']){
 
 <?php if ($privacy_policy and $privacy_policy != ''){ ?>  
   <h2>Privacy Policy </h2>
-  <div style="width:100%; height:250px; border:1px solid #C6D9E9; border-right:0px; padding:5px; overflow: auto"><?php echo $privacy_policy; ?></div>
+  <div style="width:95%; height:250px; border:1px solid #C6D9E9; border-right:0px; padding:5px; overflow: auto"><?php echo $privacy_policy; ?></div>
 <?php } ?>
   
     <h2>The Agreement</h2>
