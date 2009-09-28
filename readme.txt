@@ -12,14 +12,14 @@ Forces all users (except admins) to agree to your Terms and Conditions on first 
 
 Instead of adding Terms and Conditions to the signup page, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
 
-Features:
-1. Fully customizable Terms and Conditions, Privacy Policy and welcome message.
-2. No changes need to be made to the Sign up process.
-3. Existing users can agree to terms.
-4. Users can view the terms at any time.
-5. The date the user agreed is displayed on the profile page with a link to the terms.
-6. Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
-7. Option to show agreement date on profile.
+=Features=
+* Fully customizable Terms and Conditions, Privacy Policy and welcome message.
+* No changes need to be made to the Sign up process.
+* Existing users can agree to terms.
+* Users can view the terms at any time.
+* The date the user agreed is displayed on the profile page with a link to the terms.
+* Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
+* Option to show agreement date on profile.
 
 If you would like to move the users' Terms of Use link, simply change 'index.php' on line 14 of 'tou-config.php'.
 
@@ -47,5 +47,9 @@ Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to cu
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
-1.4 Fixed WPMU bugs with link urls. Moved Terms of use to dashboard menu for users to view and accept.
-1.3 Fixed folder name in config file. 
+=1.4= 
+*Fixed WPMU bugs with link urls. 
+*Moved Terms of use to dashboard menu for users to view and accept.
+
+=1.3= 
+*Fixed folder name in config file. 
