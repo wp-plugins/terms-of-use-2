@@ -20,6 +20,7 @@ Instead of adding Terms and Conditions to the signup page, this plugin presents 
 * The date the user agreed is displayed on the profile page with a link to the terms.
 * Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
 * Option to show agreement date on profile.
+* Shortcode [terms-of-use] for use in pages or posts for WordPress version 2.8 and above.
 
 If you would like to move the users' Terms of Use link, simply change 'index.php' on line 14 of 'tou-config.php'.
 
@@ -28,19 +29,14 @@ Feedback and requests are welcome.
 Adapted from Levi Putna's Terms of Use plugin.
 
 == Installation ==
-
-WordPress:
 1. Upload `terms-of-use` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu
 3. Go to the 'Settings' menu and select 'Terms of Use' to customize settings.
 4. Users can view the terms under the 'Dashboard' menu.
-
-WPMU:
-Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to customize settings. 
-
+5. Use shortcode [terms-of-use] in pages or posts to avoid duplication of content. (Requires WordPress version 2.8)
+6. WPMU: Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to customize settings. 
 
 == Screenshots ==
-
 1. The settings page.
 2. The agreement page. Privacy Policy has been left blank in the example.
 3. The welcome page seen after term acceptance.
@@ -48,6 +44,9 @@ Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to cu
 == Changelog ==
 = 1.7 =
 *Fixed bug that overwrote custom options on plugin update.
+*Added shortcode for use of terms in pages or posts.
+*Fixed bug that showed Privacy Policy and Terms boxes when empty.
+*Added option to allow users to accept terms during signup.
 
 = 1.6 =
 *Added 'Settings' link on the plugins page
@@ -62,4 +61,4 @@ Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to cu
 *Moved Terms of use to dashboard menu for users to view and accept.
 
 = 1.3 = 
-*Fixed folder name in config file. 
+*Fixed folder name in config file.

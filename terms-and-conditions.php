@@ -1,25 +1,31 @@
-<div class="wrap tou">
 <?php
-    
+if (is_admin())
+   echo '<div class="wrap tou">'; 
 //get the settings
-if(IS_WPMU)
-    $tou_settings = get_site_option('tou_options');
-else
-    $tou_settings = get_option('tou_options');
+global $tou_settings;
     
-$site_name = stripslashes($tou_settings['site_name']);
+$tou_name = stripslashes($tou_settings['site_name']);
 
-if(!$site_name)
-    $site_name = get_option('blogname');
+if(!$tou_name)
+    $tou_name = get_option('blogname');
 
-$terms = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['terms'])));
-$privacy_policy = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['privacy_policy'])));
-$member_agreement = wpautop(str_replace('[website-name]', $site_name, stripslashes($tou_settings['member_agreement'])));
-$agree = str_replace('[website-name]', $site_name, stripslashes($tou_settings['agree']));
-$welcome = str_replace('[website-name]', $site_name, stripslashes($tou_settings['welcome'])); 
-$error = '';  
+$terms = '';
+if ($tou_settings['terms'] != '')
+    $terms = wpautop(str_replace('[website-name]', $tou_name, stripslashes($tou_settings['terms'])));
+
+$privacy_policy = '';
+if ($tou_settings['privacy_policy'] != '')
+    $privacy_policy = wpautop(str_replace('[website-name]', $tou_name, stripslashes($tou_settings['privacy_policy'])));
+
+$member_agreement = wpautop(str_replace('[website-name]', $tou_name, stripslashes($tou_settings['member_agreement'])));
+$agree = str_replace('[website-name]', $tou_name, stripslashes($tou_settings['agree']));
+$welcome = str_replace('[website-name]', $tou_name, stripslashes($tou_settings['welcome'])); 
+$error = '';
+
+if (!is_admin()){  
+    echo $terms;
 //Check if user has agreed to the terms and conditions, if not display the terms and conditions else save the settings and display the welcome message.
-if($_POST and $_POST['terms-and-conditions']){
+}else if($_POST and $_POST['terms-and-conditions']){
     //update current users terms_and_conditions
     global $user_ID;
     if ($tou_settings['initials'] and !$_POST['initials']){ //the agreement page
@@ -39,5 +45,7 @@ if($_POST and $_POST['terms-and-conditions']){
     echo $welcome;
 }else{  //the agreement page
 	require('views/agreement_form.php');
-}	
+}
+if (is_admin())
+   echo '</div>';	
 ?>

@@ -11,7 +11,7 @@
         	<tr>
 				<th scope="row"><label>Website Name</label></th>
 				<td>
-				    <input name="site_name" id="site_name" type="text" value="<?php echo $site_name; ?>" class="regular-text" />
+				    <input name="site_name" id="site_name" type="text" value="<?php echo $tou_name; ?>" class="regular-text" />
                     <span class="description">Website Name will replace <b>[website-name]</b> in messages when displayed.</span>
 				</td>
          	</tr>
@@ -32,7 +32,7 @@
 				    <div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
             			<?php the_editor($terms, 'terms', 'title', false); ?>
             		</div>
-					<span class="description">Leaving the Terms blank will remove the "Terms and Conditions" box on the agreement page</span>
+					<span class="description">Leaving the Terms blank will remove the "Terms and Conditions" box on the agreement page. Use shortcode [terms-of-use] to place in a page or post.</span>
 				</td>
          	</tr>
 
@@ -75,7 +75,10 @@
                     <span class="description">Show date accepted in user profile.</span><br/>
                     
                     <input type="checkbox" name="initials" id="initials" value="checked='checked'" <?php echo $initials ?>>
-                    <span class="description">Show and require user initials on agreement.</span>
+                    <span class="description">Show and require user initials on agreement.</span><br/>
+                    
+                    <input type="checkbox" name="signup_page" id="signup_page" value="checked='checked'" <?php echo $signup_page ?>>
+                    <span class="description">Show and require term agreement on signup page.</span>
 				</td>
          	</tr>
          	
