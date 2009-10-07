@@ -49,7 +49,7 @@ add_action ( 'admin_init', 'tou_tinymce' );
 //check is the user has agreed to the terms and conditions
 function tou_check(){
     global $user_ID, $user_level, $tou_settings;
-    if (get_usermeta($user_ID, 'terms_and_conditions' || $_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php')) return;
+    if ($user_level == 10 || get_usermeta($user_ID, 'terms_and_conditions' || $_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php')) return;
    
     if ($_SERVER["REQUEST_URI"] and $tou_settings['admin_page'])
         $current_page = strpos($_SERVER["REQUEST_URI"], $tou_settings['admin_page']);
