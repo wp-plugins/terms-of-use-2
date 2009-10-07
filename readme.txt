@@ -4,7 +4,7 @@ Donate link: http://blog.strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, plugin, wordpress, plugin, template
 Requires at least: 2.0
 Tested up to: 2.8.4
-Stable tag: 1.9
+Stable tag: 1.10
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
@@ -44,8 +44,11 @@ Adapted from Levi Putna's Terms of Use plugin.
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
+= 1.10 =
+*Fixed admin redirect bug
+
 = 1.9 =
-*Fix redirect after terms accepted on WPMU front-end
+*Fixed redirect after terms accepted on WPMU front-end
 
 = 1.8 =
 *Bug fix for 'header information already sent' bug some users reported
