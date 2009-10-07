@@ -7,19 +7,19 @@ Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
 Version: 1.7
 */
-//TODO: Get save_tou_agreement function to fire
-//TODO: Add option for front-end terms of use page with shortcode
+
 require_once('tou-config.php');
 
 function tou_menu(){
-    global $user_ID, $user_level;
+    global $user_ID, $user_level, $tou_settings;
     
     add_submenu_page(TOU_ADMIN_EDIT_PAGE, 'Edit '. TOU_PLUGIN_TITLE, 'Edit '. TOU_PLUGIN_TITLE, 10, TOU_PATH.'/tou-settings.php'); 
     add_submenu_page(TOU_ADMIN_PAGE, TOU_PLUGIN_TITLE, TOU_PLUGIN_TITLE, 0, TOU_PATH.'/terms-and-conditions.php');
 
     add_action('admin_head-'.TOU_PLUGIN_NAME.'/tou-settings.php', 'tou_admin_header');
+    add_action('admin_head-'.TOU_PLUGIN_NAME.'/terms-and-conditions.php', 'tou_admin_header');
     
-    if (!get_usermeta($user_ID, 'terms_and_conditions') and $user_level < 10 and !$_POST){
+    if ($user_level < 10 and !get_usermeta($user_ID, 'terms_and_conditions') and !$_POST and $tou_settings['admin_page'] == 'index.php'){
         global $menu;
         foreach ( $menu as $id => $data )
             unset($menu[$id]);
@@ -36,8 +36,7 @@ function tou_settings_link($links){
 }
 
 function tou_tinymce(){
-	add_action( 'admin_print_footer_scripts', 'wp_tiny_mce', 25 );
-	wp_enqueue_script('post');
+    add_action( 'admin_print_footer_scripts', 'wp_tiny_mce', 25 );
 	if ( user_can_richedit() )
 		wp_enqueue_script('editor');
 	add_thickbox();
@@ -49,22 +48,35 @@ add_action ( 'admin_init', 'tou_tinymce' );
 
 //check is the user has agreed to the terms and conditions
 function tou_check(){
-    global $user_ID, $user_level;
-    if ($user_level == 10) return;
+    global $user_ID, $user_level, $tou_settings;
+    if ($user_level == 10 || get_usermeta($user_ID, 'terms_and_conditions' || $_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php')) return;
 
-    if(!get_usermeta($user_ID, 'terms_and_conditions') and !$_GET['page'] == TOU_PLUGIN_NAME. '/terms-and-conditions.php'){
-	    die("<script type='text/javascript'>window.location='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php' </script>");
+    /*$multi_page = strpos($tou_settings['admin_page'], '|');
+    $current_page = false;
+    if ($multi_page){
+        $admin_pages = explode('|', $tou_settings['admin_page']);
+        foreach ($admin_pages as $apage){
+            $current_page = strpos($_SERVER["REQUEST_URI"], $apage);
+            if ($current_page) continue;
+        }
+    }else*/    
+    $current_page = strpos($_SERVER["REQUEST_URI"], $tou_settings['admin_page']);
+    if(!isset($tou_settings['admin_page']) || $tou_settings['admin_page'] == 'index.php' || $current_page){
+        die("<script type='text/javascript'>window.location='". TOU_ADMIN_PAGE ."?page=". TOU_PLUGIN_NAME ."/terms-and-conditions.php' </script>");
     }
 }
 add_action('admin_head', 'tou_check');
 
+function require_tou_front_end($post){
+    global $user_ID, $user_level, $tou_settings;
+    $this_page_id = get_the_ID();
+    if ( ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||  !isset($tou_settings['frontend_page']) || $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $this_page_id || !empty($_COOKIE['terms_user_' . COOKIEHASH])) return; //$user_level == 10 ||
+    die("<script type='text/javascript'>window.location='". $tou_settings['terms_url'] ."?redirected=true' </script>");
+}
+add_action('loop_start', 'require_tou_front_end');
+
 function tou_date(){
-    global $user_ID;
-    
-    if(IS_WPMU)
-	    $tou_settings = get_site_option('tou_options');
-	else
-	    $tou_settings = get_option('tou_options');
+    global $user_ID, $tou_settings;
 	
 	if ($tou_settings['show_date'] and get_usermeta($user_ID, 'terms_and_conditions')){  
         echo "<p class='description'>";
@@ -78,7 +90,7 @@ add_action('show_user_profile', 'tou_date', 200);
 
 /*****************************STYLING*******************************/
 function tou_admin_header(){?>
-<style>textarea{width:100%;}</style>
+<style>textarea, input[type="text"]{width:100%;}</style>
 <?
 }
 
@@ -92,14 +104,14 @@ add_shortcode('terms-of-use', 'get_tou_terms');
 /*****************************REGISTER/SIGNUP***********************/
 function tou_checkbox($errors=''){
     global $tou_settings;
-    if ($tou_settings['signup_page']){
+    if ($tou_settings['signup_page'] and isset($tou_settings['terms_url']) and $tou_settings['terms_url'] != ''){
 ?>
 <?php if ( $errmsg = $errors->get_error_message('terms') ) { ?>
 	<p class="error"><?php echo $errmsg ?></p>
 <?php } ?>
     <p>
         <input type="checkbox" id="terms" name="terms" value="1"> 
-        <label class="checkbox">I have read and agree to the <a href="">Terms & Conditions</a></label>
+        <label class="checkbox">I have read and agree to the <a href="<?php echo $tou_settings['terms_url'] ?>">Terms & Conditions</a></label>
     </p>    
     <?php if ($tou_settings['initials']){ 
         if ( $errmsg = $errors->get_error_message('tou_initials') ) { ?>
@@ -192,7 +204,7 @@ function set_tou_defaults(){
     $agree = "By clicking \"I agree\" you are indicating that you have read and agree to the above Terms of Use and Privacy Policy.";
     $show_date = "checked='checked'";
     
-    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false);
+    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false, 'signup_page' => false, 'admin_page' => 'index.php', 'frontend_page' => '', 'terms_page' => '', 'menu_page' => 'index.php');
     
     
     if(IS_WPMU){
@@ -215,4 +227,5 @@ function get_tou_include_contents($filename) {
     }
     return false;
 }
+
 ?>

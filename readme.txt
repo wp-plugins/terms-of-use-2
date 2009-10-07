@@ -46,7 +46,12 @@ Adapted from Levi Putna's Terms of Use plugin.
 *Fixed bug that overwrote custom options on plugin update.
 *Added shortcode for use of terms in pages or posts.
 *Fixed bug that showed Privacy Policy and Terms boxes when empty.
-*Added option to allow users to accept terms during signup.
+*Added option to allow users to accept terms during signup. Known to not save correctly in WPMU.
+*Changed date format for profile page to the format selected on Settings > General
+*Fixed javascript bug that prevented collapse of windows on new/edit posts page
+*Added option to select which admin page to protect
+*Added option to select which front-end page to protect
+*Added option to select where users see the Terms of Use in the admin menu
 
 = 1.6 =
 *Added 'Settings' link on the plugins page

@@ -47,7 +47,7 @@
          	</tr>
          	
          	<tr>
-				<th scope="row"><label for="blogdescription">Welcome Message</label></th>
+				<th scope="row"><label>Welcome Message</label></th>
 				<td>
 				    <div id="postdiv">
 				        <textarea id="welcome" class="code" name="welcome" rows="10"><?php echo $welcome; ?></textarea>
@@ -67,7 +67,7 @@
          	</tr>
          	
          	<tr>
-				<th scope="row"><label for="blogdescription">Other Options</label></th>
+				<th scope="row"><label>Other Options</label></th>
 				<td>
 				    <input type="checkbox" name="clear_all" id="clear_all" value="1">
                     <span class="description">Clear all previous user agreements so users can reaccept terms. Caution: there is no undo.</span><br/>
@@ -78,12 +78,50 @@
                     <span class="description">Show and require user initials on agreement.</span><br/>
                     
                     <input type="checkbox" name="signup_page" id="signup_page" value="checked='checked'" <?php echo $signup_page ?>>
-                    <span class="description">Show and require term agreement on signup page.</span>
+                    <span class="description">Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below.</span>
 				</td>
          	</tr>
          	
+         	<tr>
+				<th scope="row"><label>Terms Page Admin Menu</label></th>
+				<td>
+				    <select name="menu_page">
+				        <?php foreach ($admin_menu_options as $page => $page_name){?>
+				            <option value="<?php echo $page ?>"<?php echo ($menu_page == $page)?(' selected=selected'):(''); ?>><?php echo $page_name ?></option>
+				        <?php } ?>
+				    </select><br/>
+                    <span class="description">Full URL of front-end terms page including http://. Use shortcode [terms-of-use] in your page.</span>
+				</td>
+         	</tr>
+         	
+         	<tr>
+				<th scope="row"><label>Terms Page URL</label></th>
+				<td>
+				    <input name="terms_url" id="terms_url" type="text" value="<?php echo $terms_url; ?>" class="regular-text" /><br/>
+                    <span class="description">Full URL of front-end terms page including http://. Use shortcode [terms-of-use] in your page.</span>
+				</td>
+         	</tr>
+         	
+         	<tr>
+         	    <th scope="row"><label>Require Term Agreement to Access:</label></th>
+				<td>Admin Pages
+				    <select name="admin_page">
+				        <option value="">Don't require in admin</option>
+				        <?php foreach ($admin_page_list as $page => $page_name){?>
+				            <option value="<?php echo $page ?>"<?php echo ($admin_page == $page)?(' selected=selected'):(''); ?>><?php echo $page_name ?></option>
+				        <?php } ?>
+				    </select><br/>
+				    Front-end Page
+				    <select name="frontend_page">
+				        <option value="">None</option>
+				        <?php foreach ($pages as $page){ ?>
+				            <option value="<?php echo $page->ID ?>"<?php echo ($frontend_page == $page->ID)?(' selected=selected'):(''); ?>><?php echo $page->post_title ?></option>
+				        <?}?>
+				    </select>    
+				</td>
+			</tr>	
        </table>
-
+       
        <p class="submit">
            <input name="Submit" class="button-primary" value="Save Changes" type="submit">
        </p>
