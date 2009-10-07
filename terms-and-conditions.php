@@ -46,7 +46,7 @@ if (!is_admin()){
             update_usermeta($user_ID, "terms_and_conditions", date('Y-m-d H:i:s'));
         }
         $protected_page_url = get_permalink($tou_settings['frontend_page']);
-        wp_redirect($protected_page_url);
+        die("<script type='text/javascript'>window.location='".$protected_page_url."' </script>");
     }else
         if ($show_buttons)
             require('views/agreement_form.php');
