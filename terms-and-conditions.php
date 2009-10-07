@@ -44,10 +44,6 @@ if (!is_admin()){
             if ($tou_settings['initials'] and $_POST['initials'])
                 update_usermeta($user_ID, "tou_initials", $_POST['initials']);
             update_usermeta($user_ID, "terms_and_conditions", date('Y-m-d H:i:s'));
-        }else{
-            $terms_cookie_lifetime = apply_filters('terms_cookie_lifetime', 30000000);
-            $cookie_value = ($tou_settings['initials'] and $_POST['initials'])?($_POST['initials']):('agree');
-            setcookie('terms_user_' . COOKIEHASH, $cookie_value, time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
         }
         $protected_page_url = get_permalink($tou_settings['frontend_page']);
         wp_redirect($protected_page_url);
