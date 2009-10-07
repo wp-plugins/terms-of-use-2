@@ -35,18 +35,19 @@ if (!is_admin()){
         $show_buttons = false;
         
     if ($_POST and isset($_POST['terms-and-conditions'])){
+        if ($tou_settings['initials'] and !$_POST['initials']){ //the agreement page
+            $error = "You must enter your initials";
+        	require('views/agreement_form.php');
+        	return;
+        }	
         if ($user_ID){
-            if ($tou_settings['initials'] and !$_POST['initials']){ //the agreement page
-                $error = "You must enter your initials";
-            	require('views/agreement_form.php');
-            }else{
-                if ($tou_settings['initials'] and $_POST['initials'])
-                    update_usermeta($user_ID, "tou_initials", $_POST['initials']);
-            }
+            if ($tou_settings['initials'] and $_POST['initials'])
+                update_usermeta($user_ID, "tou_initials", $_POST['initials']);
             update_usermeta($user_ID, "terms_and_conditions", date('Y-m-d H:i:s'));
         }else{
             $terms_cookie_lifetime = apply_filters('terms_cookie_lifetime', 30000000);
-            setcookie('terms_user_' . COOKIEHASH, 'agree', time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
+            $cookie_value = ($tou_settings['initials'] and $_POST['initials'])?($_POST['initials']):('agree');
+            setcookie('terms_user_' . COOKIEHASH, $cookie_value, time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
         }
         $protected_page_url = get_permalink($tou_settings['frontend_page']);
         wp_redirect($protected_page_url);

@@ -10,17 +10,19 @@ Forces all users (except admins) to agree to your Terms and Conditions on first 
 
 == Description ==
 
-Instead of adding Terms and Conditions to the signup page, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
+Instead of adding Terms and Conditions to the signup page, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms if the option to require agreement on 'All Admin pages' is selected. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
 
 = Features =
 * Fully customizable Terms and Conditions, Privacy Policy and welcome message.
 * No changes need to be made to the Sign up process.
 * Existing users can agree to terms.
 * Users can view the terms at any time.
-* The date the user agreed is displayed on the profile page with a link to the terms.
+* The date the user agreed is displayed on the profile page with a link to the terms. (Feature sponsored by http://www.omniaalliance.com/)
+* Option to require user initials on agreement (Feature sponsored by http://www.omniaalliance.com/)
 * Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
 * Option to show agreement date on profile.
 * Shortcode [terms-of-use] for use in pages or posts for WordPress version 2.8 and above.
+* Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted. (Feature sponsored by http://www.itate-solutions.com/)
 
 If you would like to move the users' Terms of Use link, simply change 'index.php' on line 14 of 'tou-config.php'.
 
