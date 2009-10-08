@@ -17,12 +17,12 @@ Instead of adding Terms and Conditions to the signup page, this plugin presents 
 * No changes need to be made to the Sign up process.
 * Existing users can agree to terms.
 * Users can view the terms at any time.
-* The date the user agreed is displayed on the profile page with a link to the terms. (Feature sponsored by http://www.omniaalliance.com/)
-* Option to require user initials on agreement (Feature sponsored by http://www.omniaalliance.com/)
+* The date the user agreed is displayed on the profile page with a link to the terms.
+* Option to require user initials on agreement.
 * Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
 * Option to show agreement date on profile.
 * Shortcode [terms-of-use] for use in pages or posts for WordPress version 2.8 and above.
-* Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted. (Feature sponsored by http://www.itate-solutions.com/)
+* Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted.
 
 If you would like to move the users' Terms of Use link, simply change 'index.php' on line 14 of 'tou-config.php'.
 
