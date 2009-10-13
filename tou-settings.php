@@ -31,7 +31,7 @@
 	}
 	
 	$pages = get_posts( array('post_type' => 'page', 'post_status' => 'published', 'numberposts' => 99, 'order_by' => 'post_title', 'order' => 'ASC'));
-	$admin_page_list = array('index.php' => 'All Admin pages', 'themes.php' => 'Themes', 'post-new.php' => 'New Post', 'page-new.php' => 'New Page', 'media-new.php' => 'New Media');
+	$admin_page_list = array('index.php' => 'All Admin pages', 'themes.php' => 'Themes', 'post-new.php' => 'New Post', 'page-new.php' => 'New Page', 'media-new.php' => 'New Media', 'profile.php' => 'Profile');
 	
 	$admin_menu_options = array('index.php' => 'Dashboard', 'tools.php' => 'Tools', 'options-general.php' => 'Settings');
 	//Retrieve all the settings
