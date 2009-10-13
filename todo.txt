@@ -1,0 +1,12 @@
+- Get save_tou_agreement function to fire in WPMU
+- Add option for page to require agreement (comment, signup page, media upload...) AND show link or full terms?
+- Add option for user levels that must agree to terms
+- Add option for multiple terms pages for multiple languages
+
+- Extra option below comment_form with checkbox “I have read the terms of use (linked, opens in new tab/window) and agree to them bla bla”;
+- Checkmark (YES) and initials are saved to the database, ideally together with their first comment;
+- Repeat visits by same customer show comment_form terms checkbox checked;
+- Search query in wp-admin for email address commenter when they have agreed to the terms (and name / IP);
+
+- Fix redirects to allow for default permalinks (?page_id=3?redirected=true)
+- save a cleared on date to check cookie dates against
