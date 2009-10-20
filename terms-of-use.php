@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.10.2
+Version: 1.10.3
 */
 
 require_once('tou-config.php');
@@ -108,17 +108,16 @@ function tou_checkbox($errors=''){
     global $tou_settings;
     if ($tou_settings['signup_page'] and isset($tou_settings['terms_url']) and $tou_settings['terms_url'] != ''){
 ?>
-<?php if ( $errmsg = $errors->get_error_message('terms') ) { ?>
-	<p class="error"><?php echo $errmsg ?></p>
-<?php } ?>
+<?php if ( $errors != '' && $errmsg = $errors->get_error_message('terms') )
+        echo "<p class='error'>$errmsg</p>"; ?>
     <p>
         <input type="checkbox" id="terms" name="terms" value="1"> 
         <label class="checkbox">I have read and agree to the <a href="<?php echo $tou_settings['terms_url'] ?>">Terms & Conditions</a></label>
     </p>    
     <?php if ($tou_settings['initials']){ 
-        if ( $errmsg = $errors->get_error_message('tou_initials') ) { ?>
-        	<p class="error"><?php echo $errmsg ?></p>
-        <?php } ?>
+        if ( $errors != '' && $errmsg = $errors->get_error_message('tou_initials') )
+        	echo "<p class='error'>$errmsg</p>";
+    ?>
         <p>
             <label class="checkbox">Initials:</label> <input type="text" name="tou_initials" id="tou_initials" size="4" value="">
         </p>    
