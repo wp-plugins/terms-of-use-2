@@ -183,16 +183,18 @@ function tou_hidden_fields(){
 add_action('signup_hidden_fields', 'tou_hidden_fields');
 
 function save_tou_agreement($user_id, $password='', $meta=array()){
-    global $wpdb;
+    global $wpdb, $tou_settings;
     
-    $user_email = $wpdb->get_var( $wpdb->prepare("SELECT user_email FROM $wpdb->users where ID = $user_id") );
-    $signup_data = $wpdb->get_var( $wpdb->prepare("SELECT meta from $wpdb->signups where user_email = '$user_email'") );
-    $meta = unserialize($signup_data);
-	if( $meta[ 'tou_initials' ] )
-		update_usermeta( $user_id, 'tou_initials', $meta[ 'tou_initials' ] );
+    if ($tou_settings['signup_page']){
+        $user_email = $wpdb->get_var( $wpdb->prepare("SELECT user_email FROM $wpdb->users where ID = $user_id") );
+        $signup_data = $wpdb->get_var( $wpdb->prepare("SELECT meta from $wpdb->signups where user_email = '$user_email'") );
+        $meta = unserialize($signup_data);
+    	if( $meta[ 'tou_initials' ] )
+    		update_usermeta( $user_id, 'tou_initials', $meta[ 'tou_initials' ] );
 
-	if( $meta[ 'terms_and_conditions' ] )
-		update_usermeta( $user_id, 'terms_and_conditions', $meta[ 'terms_and_conditions' ] );
+    	if( $meta[ 'terms_and_conditions' ] )
+    		update_usermeta( $user_id, 'terms_and_conditions', $meta[ 'terms_and_conditions' ] );
+	}
 }
 add_action('wpmu_activate_user', 'save_tou_agreement', 10, 3);
 
