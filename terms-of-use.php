@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Force users to agree to terms and conditions on first login.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.10.1
+Version: 1.10.2
 */
 
 require_once('tou-config.php');
@@ -183,11 +183,11 @@ function tou_hidden_fields(){
 add_action('signup_hidden_fields', 'tou_hidden_fields');
 
 function save_tou_agreement($user_id, $password='', $meta=array()){
-    //global $wpdb;
-    wp_die('saving!');
-    //$user_email = $wpdb->get_var( $wpdb->prepare("SELECT user_email FROM $wpdb->users where id = $user_id") );
-    //$signup_data = $wpdb->get_var( $wpdb->prepare("SELECT meta from $wpdb->signups where user_email = '$user_email'") );
-    //$meta = unserialize($signup_data);
+    global $wpdb;
+    
+    $user_email = $wpdb->get_var( $wpdb->prepare("SELECT user_email FROM $wpdb->users where ID = $user_id") );
+    $signup_data = $wpdb->get_var( $wpdb->prepare("SELECT meta from $wpdb->signups where user_email = '$user_email'") );
+    $meta = unserialize($signup_data);
 	if( $meta[ 'tou_initials' ] )
 		update_usermeta( $user_id, 'tou_initials', $meta[ 'tou_initials' ] );
 
