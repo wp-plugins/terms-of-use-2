@@ -90,7 +90,7 @@
 				            <option value="<?php echo $page ?>"<?php echo ($menu_page == $page)?(' selected=selected'):(''); ?>><?php echo $page_name ?></option>
 				        <?php } ?>
 				    </select><br/>
-                    <span class="description">Full URL of front-end terms page including http://. Use shortcode [terms-of-use] in your page.</span>
+                    <span class="description">The admin menu item to place the terms under. This is what users will see. IMPORTANT: Make sure to select a menu item your users have access to. Otherwise, they will be blocked by permissions errors.</span>
 				</td>
          	</tr>
          	
