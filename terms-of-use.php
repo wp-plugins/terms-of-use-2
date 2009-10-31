@@ -2,10 +2,10 @@
 /*
 Plugin Name: Terms of Use
 Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
-Description: Force users to agree to terms and conditions on first login.
+Description: Require users to agree to terms and conditions on first login, registration, or first access to specified page.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.10.4
+Version: 1.10.5
 */
 
 require_once('tou-config.php');
