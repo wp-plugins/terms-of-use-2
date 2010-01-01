@@ -1,11 +1,14 @@
-<?php if ($error){
-    echo '<div class="error">';
-        echo '<span><strong>ERROR</strong>: ' . $error . '</span>';
-    echo '</div>';
-} 
-?>
+<?php if ($error){ ?>
+<div class="error">
+    <span><strong>ERROR</strong>: <?php echo $error ?></span>
+</div>
+<?php } ?> 
 <div id="post-body-content">
-<div id="icon-edit-pages" class="icon32"><br></div>
+
+<?php if (is_admin()){ ?>
+<div id="icon-edit-pages" class="icon32"><br></div>        
+<?php }?>
+
 <h2>Member Agreement </h2>
 <?php require('nav.php'); ?>
 <div id="postdiv" class="postarea"><?php echo $member_agreement; ?></div>
@@ -16,7 +19,7 @@
 <?php } ?>  
 
 <?php if ($privacy_policy and $privacy_policy != ''){ ?>  
-  <h2>Privacy Policy </h2>
+  <h2>Privacy Policy</h2>
   <div style="width:95%; height:250px; border:1px solid #C6D9E9; padding:5px; overflow:auto;"><?php echo $privacy_policy ?></div>
 <?php } ?>
 

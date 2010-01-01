@@ -79,6 +79,12 @@
                     
                     <input type="checkbox" name="signup_page" id="signup_page" value="checked='checked'" <?php echo $signup_page ?>>
                     <span class="description">Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below.</span>
+                    
+                    <?php if (function_exists('add_comment_meta')){ ?>
+                    <br/>
+                    <input type="checkbox" name="comment_form" id="comment_form" value="1" <?php checked($comment_form, 1) ?>>
+                    <span class="description">Show and require term agreement on comment form. NOTE: Will not show unless the Terms page is specified below.</span>
+                    <?php } ?>
 				</td>
          	</tr>
          	
@@ -86,19 +92,11 @@
 				<th scope="row"><label>Terms Page Admin Menu</label></th>
 				<td>
 				    <select name="menu_page">
-				        <?php foreach ($admin_menu_options as $page => $page_name){?>
+				        <?php foreach ($admin_menu_options as $page => $page_name){ ?>
 				            <option value="<?php echo $page ?>"<?php echo ($menu_page == $page)?(' selected=selected'):(''); ?>><?php echo $page_name ?></option>
 				        <?php } ?>
 				    </select><br/>
                     <span class="description">The admin menu item to place the terms under. This is what users will see. IMPORTANT: Make sure to select a menu item your users have access to. Otherwise, they will be blocked by permissions errors.</span>
-				</td>
-         	</tr>
-         	
-         	<tr>
-				<th scope="row"><label>Terms Page URL</label></th>
-				<td>
-				    <input name="terms_url" id="terms_url" type="text" value="<?php echo $terms_url; ?>" class="regular-text" /><br/>
-                    <span class="description">Full URL of front-end terms page including http://. Use shortcode [terms-of-use] in your page.</span>
 				</td>
          	</tr>
          	
@@ -119,7 +117,20 @@
 				        <?}?>
 				    </select>    
 				</td>
-			</tr>	
+			</tr>
+			
+         	<tr>
+				<th scope="row"><label>Terms Page</label></th>
+				<td>
+				    <select name="terms_url">
+				        <option value=""></option>
+				        <?php foreach ($pages as $page){ ?>
+				            <option value="<?php echo $page->ID ?>"<?php echo ($terms_url == $page->ID or (!is_numeric($terms_url) && $terms_url == get_permalink($page->ID)))?(' selected=selected'):(''); ?>><?php echo $page->post_title ?></option>
+				        <?}?>
+				    </select><br/>
+                    <span class="description">Select front-end terms page if requiring terms agreement for front-end page. Use shortcode [terms-of-use] in your page.</span>
+				</td>
+         	</tr>	
        </table>
        
        <p class="submit">

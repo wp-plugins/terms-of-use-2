@@ -12,6 +12,7 @@
 	        'show_date' => $_POST['show_date'], 
 	        'initials' => $_POST['initials'], 
 	        'signup_page' => $_POST['signup_page'], 
+	        'comment_form' => $_POST['comment_form'],
 	        'admin_page' => $_POST['admin_page'], 
 	        'frontend_page' => $_POST['frontend_page'], 
 	        'terms_url' => $_POST['terms_url'], 
@@ -23,7 +24,7 @@
         else
             update_option('tou_options', $tou_data);
             
-        if ($_POST['clear_all'] == 1){
+        if (isset($_POST['clear_all']) && $_POST['clear_all'] == 1){
             global $wpdb;
             $wpdb->query( $wpdb->prepare("DELETE FROM $wpdb->usermeta WHERE meta_key = 'terms_and_conditions'") );
         }
@@ -40,18 +41,20 @@
 	if (!isset($tou_settings['admin_page']))
 	    $tou_settings['admin_page'] = 'index.php';
 	
-	$member_agreement = stripslashes((($_POST and $_POST['member_agreement'] != null)?$_POST['member_agreement']:$tou_settings['member_agreement']));
-	$terms = stripslashes((($_POST and $_POST['terms'] != null)?$_POST['terms']:$tou_settings['terms']));
-	$privacy_policy = stripslashes((($_POST and $_POST['privacy_policy'] != null)?$_POST['privacy_policy']:$tou_settings['privacy_policy']));
+	$member_agreement = stripslashes((($_POST and $_POST['member_agreement'] != null) ? $_POST['member_agreement'] : $tou_settings['member_agreement']));
+	$terms = stripslashes((($_POST and $_POST['terms'] != null) ? $_POST['terms'] : $tou_settings['terms']));
+	$privacy_policy = stripslashes((($_POST and $_POST['privacy_policy'] != null) ? $_POST['privacy_policy'] : $tou_settings['privacy_policy']));
     $welcome = stripslashes((($_POST and $_POST['welcome'] != null)?$_POST['welcome']:$tou_settings['welcome']));
     $tou_name = stripslashes((($_POST and $_POST['site_name'] != null)?$_POST['site_name']:$tou_settings['site_name']));
     $agree = stripslashes((($_POST and $_POST['agree'] != null)?$_POST['agree']:$tou_settings['agree']));
     $show_date = stripslashes((($_POST)?$_POST['show_date']:$tou_settings['show_date']));
     $initials = stripslashes((($_POST)?$_POST['initials']:$tou_settings['initials']));
     $signup_page = stripslashes((($_POST)?$_POST['signup_page']:$tou_settings['signup_page']));
+    $comment_form = (($_POST)?$_POST['comment_form']:$tou_settings['comment_form']);
     $admin_page = stripslashes((($_POST and isset($_POST['admin_page']))?$_POST['admin_page']:$tou_settings['admin_page']));
     $frontend_page = stripslashes((($_POST and isset($_POST['frontend_page']))?$_POST['frontend_page']:$tou_settings['frontend_page']));
     $terms_url = stripslashes((($_POST and isset($_POST['terms_url']))?$_POST['terms_url']:$tou_settings['terms_url']));
+    $terms_url = (substr($terms_url, -1) != '/') ? ($terms_url .'/') : ($terms_url);
     $menu_page = stripslashes((($_POST and isset($_POST['menu_page']))?$_POST['menu_page']:$tou_settings['menu_page']));
 	
 	if(!$tou_name)

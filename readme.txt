@@ -3,7 +3,7 @@ Contributors: sswells
 Donate link: http://blog.strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, plugin, wordpress, plugin, template
 Requires at least: 2.0
-Tested up to: 2.8.5
+Tested up to: 2.9
 Stable tag: 1.10.5
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
@@ -19,12 +19,12 @@ Instead of adding Terms and Conditions to the signup page, this plugin presents 
 * Users can view the terms at any time.
 * The date the user agreed is displayed on the profile page with a link to the terms.
 * Option to require user initials on agreement.
+* Option to require terms agreement on comment form in WordPress version 2.9 and above.
 * Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
 * Option to show agreement date on profile.
 * Shortcode [terms-of-use] for use in pages or posts for WordPress version 2.8 and above.
 * Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted.
 
-If you would like to move the users' Terms of Use link, simply change 'index.php' on line 14 of 'tou-config.php'.
 
 Feedback and requests are welcome.
 
@@ -44,53 +44,59 @@ Adapted from Levi Putna's Terms of Use plugin.
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
+= 1.11.0 =
+* Fixed front-end redirect to work with default permalinks
+* Removed unnecessary javascript from admin
+* Simplified front-end terms requirements with a page drop-down in the admin settings, and auto content if the page is blank.
+* Added option to require terms on comment form
+
 = 1.10.5 =
-*Updated instructions for admin menu selected
-*Added profile to the options of where to place the Terms of Use admin menu
+* Updated instructions for admin menu selected
+* Added profile to the options of where to place the Terms of Use admin menu
 
 = 1.10.4 =
-*Fixed registration page error... again
+* Fixed registration page error... again
 
 = 1.10.3 =
-*Fixed bug preventing terms agreement checkbox to show on WP registration page
+* Fixed bug preventing terms agreement checkbox to show on WP registration page
 
 = 1.10.2 =
-*Removed code causing signup issue in WPMU
+* Removed code causing signup issue in WPMU
 
 = 1.10.1 =
-*Added Profile page as an option on admin pages to protect
+* Added Profile page as an option on admin pages to protect
 
 = 1.10 =
-*Fixed admin redirect bug
+* Fixed admin redirect bug
 
 = 1.9 =
-*Fixed redirect after terms accepted on WPMU front-end
+* Fixed redirect after terms accepted on WPMU front-end
 
 = 1.8 =
-*Bug fix for 'header information already sent' bug some users reported
+* Bug fix for 'header information already sent' bug some users reported
 
 = 1.7 =
-*Fixed bug that overwrote custom options on plugin update.
-*Added shortcode for use of terms in pages or posts.
-*Fixed bug that showed Privacy Policy and Terms boxes when empty.
-*Added option to allow users to accept terms during signup. Known to not save correctly in WPMU.
-*Changed date format for profile page to the format selected on Settings > General
-*Fixed javascript bug that prevented collapse of windows on new/edit posts page
-*Added option to select which admin page to protect
-*Added option to select which front-end page to protect
-*Added option to select where users see the Terms of Use in the admin menu
+* Fixed bug that overwrote custom options on plugin update.
+* Added shortcode for use of terms in pages or posts.
+* Fixed bug that showed Privacy Policy and Terms boxes when empty.
+* Added option to allow users to accept terms during signup. Known to not save correctly in WPMU.
+* Changed date format for profile page to the format selected on Settings > General
+* Fixed javascript bug that prevented collapse of windows on new/edit posts page
+* Added option to select which admin page to protect
+* Added option to select which front-end page to protect
+* Added option to select where users see the Terms of Use in the admin menu
 
 = 1.6 =
-*Added 'Settings' link on the plugins page
-*Added option to require initials on agreement page
-*Moved 'Welcome' heading from code to database
+* Added 'Settings' link on the plugins page
+* Added option to require initials on agreement page
+* Moved 'Welcome' heading from code to database
 
 = 1.5 =
-*Fixed plugin subnav links
+* Fixed plugin subnav links
  
 = 1.4 = 
-*Fixed WPMU bugs with link urls. 
-*Moved Terms of use to dashboard menu for users to view and accept.
+* Fixed WPMU bugs with link urls. 
+* Moved Terms of use to dashboard menu for users to view and accept.
 
 = 1.3 = 
-*Fixed folder name in config file.
+* Fixed folder name in config file.

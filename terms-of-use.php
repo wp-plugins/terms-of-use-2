@@ -2,10 +2,10 @@
 /*
 Plugin Name: Terms of Use
 Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
-Description: Require users to agree to terms and conditions on first login, registration, or first access to specified page.
+Description: Require users to agree to terms and conditions on first login, registration, comment form, or first access to specified page.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.10.5
+Version: 1.11.0
 */
 
 require_once('tou-config.php');
@@ -24,7 +24,7 @@ function tou_menu(){
         foreach ( $menu as $id => $data )
             unset($menu[$id]);
     }    
-    add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'tou_settings_link' );   
+    add_filter( 'plugin_action_links_' . TOU_PLUGIN_NAME, 'tou_settings_link' );   
 }
 add_action('admin_menu', 'tou_menu');
 
@@ -39,10 +39,6 @@ function tou_tinymce(){
     add_action( 'admin_print_footer_scripts', 'wp_tiny_mce', 25 );
 	if ( user_can_richedit() )
 		wp_enqueue_script('editor');
-	add_thickbox();
-	wp_enqueue_script('media-upload');
-	wp_enqueue_script('word-count');
-	wp_enqueue_script('quicktags');	
 }
 add_action ( 'admin_init', 'tou_tinymce' );
 
@@ -63,7 +59,8 @@ function require_tou_front_end($post){
     global $user_ID, $user_level, $tou_settings;
     $this_page_id = get_the_ID();
     if ( ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||  !isset($tou_settings['frontend_page']) || $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $this_page_id || !empty($_COOKIE['terms_user_' . COOKIEHASH])) return; //$user_level == 10 ||
-    die("<script type='text/javascript'>window.location='". $tou_settings['terms_url'] ."?redirected=true' </script>");
+    $terms_url = (is_numeric($tou_settings['terms_url'])) ? get_permalink($tou_settings['terms_url']) : $tou_settings['terms_url'];
+    die("<script type='text/javascript'>window.location='". add_query_arg('redirected', 'true', $terms_url) ."' </script>");
 }
 add_action('loop_start', 'require_tou_front_end');
 
@@ -90,6 +87,7 @@ function tou_date(){
 }
 add_action('show_user_profile', 'tou_date', 200);
 
+
 /*****************************STYLING*******************************/
 function tou_admin_header(){?>
 <style>textarea, input[type="text"]{width:100%;}</style>
@@ -98,28 +96,38 @@ function tou_admin_header(){?>
 
 /*****************************SHORTCODE*****************************/
 function get_tou_terms($atts) {
-    $display = true;
-    return get_tou_include_contents('terms-and-conditions.php'); 
+    return get_tou_include_contents('terms-and-conditions.php', $display = true); 
 }
 add_shortcode('terms-of-use', 'get_tou_terms');
+
+function check_for_tou_shortcode($content){
+    global $post, $tou_settings;
+    if ($tou_settings['terms_url'] == $post->ID && $content == '')
+        $content = get_tou_include_contents('terms-and-conditions.php', $display = true);
+    
+    return $content;
+}
+add_filter('the_content', 'check_for_tou_shortcode', 9);
 
 /*****************************REGISTER/SIGNUP***********************/
 function tou_checkbox($errors=''){
     global $tou_settings;
     if ($tou_settings['signup_page'] and isset($tou_settings['terms_url']) and $tou_settings['terms_url'] != ''){
+        $terms_url = (is_numeric($tou_settings['terms_url'])) ? get_permalink($tou_settings['terms_url']) : $tou_settings['terms_url'];
 ?>
 <?php if ( IS_WPMU && $errmsg = $errors->get_error_message('terms') )
         echo "<p class='error'>$errmsg</p>"; ?>
     <p>
-        <input type="checkbox" id="terms" name="terms" value="1"> 
-        <label class="checkbox">I have read and agree to the <a href="<?php echo $tou_settings['terms_url'] ?>">Terms & Conditions</a></label>
+        <input type="checkbox" id="terms" name="terms" value="1" style="width:auto;"> 
+        <label for="terms" class="checkbox">I have read and agree to the <a href="<?php echo $terms_url ?>">Terms & Conditions</a></label>
     </p>    
     <?php if ($tou_settings['initials']){ 
         if ( IS_WPMU && $errmsg = $errors->get_error_message('tou_initials') )
         	echo "<p class='error'>$errmsg</p>";
     ?>
         <p>
-            <label class="checkbox">Initials:</label> <input type="text" name="tou_initials" id="tou_initials" size="4" value="">
+            <label for="tou_initials">Initials</label> 
+            <input type="text" name="tou_initials" id="tou_initials" size="4" value="">
         </p>    
     <?php } ?> 
 <?  }
@@ -197,6 +205,77 @@ function save_tou_agreement($user_id, $password='', $meta=array()){
 }
 add_action('wpmu_activate_user', 'save_tou_agreement', 10, 3);
 
+
+/****************************COMMENT FORM***************************/
+function tou_comment_terms($post_id){
+    global $tou_settings;
+
+	if ($tou_settings['comment_form'] and isset($tou_settings['terms_url']) and $tou_settings['terms_url'] != ''){
+        $terms_url = (is_numeric($tou_settings['terms_url'])) ? get_permalink($tou_settings['terms_url']) : $tou_settings['terms_url'];
+    
+        if (!empty($_COOKIE['terms_user_' . COOKIEHASH])){
+            $checked = 'checked="checked"';
+            $initials = $_COOKIE['terms_user_' . COOKIEHASH];
+        }else
+            $checked = $initials = '';
+    ?>
+    <p><input type="checkbox" id="terms" name="terms" value="1" <?php echo $checked ?> style="width:auto;"> 
+    <label for="terms" class="checkbox">I have read and agree to the <a href="<?php echo $terms_url ?>">Terms & Conditions</a></label>
+    </p>    
+    <?php if ($tou_settings['initials']){ ?>
+    <p><label for="tou_initials">Initials</label> 
+    <input type="text" name="tou_initials" id="tou_initials" size="4" value="<?php echo $initials ?>" style="width:auto;"></p>    
+    <?php }
+    }
+}
+add_action('comment_form', 'tou_comment_terms');
+
+
+//Checks for terms agreement and sets an error session variable if not
+function check_comment_tou_agreement($comment_data) {
+	global $user_ID, $tou_settings;
+
+	if ($tou_settings['comment_form'] && $comment_data['comment_type'] == '' ) { // Do not check trackbacks/pingbacks
+	    if (!isset($_POST['terms']))
+            wp_die(__( 'Error: please accept Terms.' ));
+            
+	    if ($tou_settings['initials'] and !$_POST['tou_initials'])
+            wp_die(__( 'Error: please enter your initials.' ));
+	}
+	
+	return $comment_data;
+}
+add_filter('preprocess_comment', 'check_comment_tou_agreement',1);
+
+function save_tou_for_comment($comment_id){
+    global $tou_settings;
+    if ($tou_settings['comment_form']){
+        $meta_value = ($tou_settings['initials'])? $_POST['tou_initials'] : 'Agreed';
+        add_comment_meta($comment_id, 'terms_and_conditions', $meta_value);
+    }
+    if (empty($_COOKIE['terms_user_' . COOKIEHASH])){
+        $terms_cookie_lifetime = apply_filters('terms_cookie_lifetime', 30000000);
+        $cookie_value = ($tou_settings['initials'] and isset($_POST['tou_initials']))?($_POST['tou_initials']):('agree');
+        setcookie('terms_user_' . COOKIEHASH, $cookie_value, time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);   
+    }
+}
+add_action('comment_post', 'save_tou_for_comment');
+
+function add_terms_comment_column_header($column_headers){
+    global $tou_settings;
+	if ($tou_settings['comment_form'])
+        $column_headers['terms'] = 'Terms of Use';
+    return $column_headers;
+}
+add_filter('manage_edit-comments_columns', 'add_terms_comment_column_header');
+
+function add_terms_comment_column($column_name, $comment_id){
+    global $tou_settings;
+	if ($tou_settings['comment_form'])
+        echo get_comment_meta($comment_id, 'terms_and_conditions', true);
+}
+add_action( 'manage_comments_custom_column', 'add_terms_comment_column', 10, 2 );
+
 /*****************************INSTALL*******************************/
 function set_tou_defaults(){
     $terms = get_tou_include_contents('views/terms.php');
@@ -207,7 +286,7 @@ function set_tou_defaults(){
     $agree = "By clicking \"I agree\" you are indicating that you have read and agree to the above Terms of Use and Privacy Policy.";
     $show_date = "checked='checked'";
     
-    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false, 'signup_page' => false, 'admin_page' => 'index.php', 'frontend_page' => '', 'terms_page' => '', 'menu_page' => 'index.php');
+    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false, 'signup_page' => false, 'comment_form' => false, 'admin_page' => 'index.php', 'frontend_page' => '', 'terms_page' => '', 'menu_page' => 'index.php');
     
     
     if(IS_WPMU){
@@ -220,7 +299,7 @@ function set_tou_defaults(){
 }
 register_activation_hook(__FILE__,'set_tou_defaults');
 
-function get_tou_include_contents($filename) {
+function get_tou_include_contents($filename, $display=false) {
     if (is_file(TOU_PATH.'/'.$filename)) {
         ob_start();
         include $filename;
