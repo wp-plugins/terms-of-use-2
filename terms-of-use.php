@@ -5,7 +5,7 @@ Plugin URI: http://blog.strategy11.com/terms-of-use-2-wordpress-plugin
 Description: Require users to agree to terms and conditions on first login, registration, comment form, or first access to specified page.
 Author: Stephanie Wells
 Author URI: http://blog.strategy11.com
-Version: 1.11.0
+Version: 1.11.1
 */
 
 require_once('tou-config.php');
@@ -42,7 +42,7 @@ function tou_tinymce(){
 }
 add_action ( 'admin_init', 'tou_tinymce' );
 
-//check is the user has agreed to the terms and conditions
+//check if the user has agreed to the terms and conditions
 function tou_check(){
     global $user_ID, $user_level, $tou_settings;
     if ($user_level == 10) return;
@@ -55,14 +55,17 @@ function tou_check(){
 }
 add_action('admin_head', 'tou_check');
 
-function require_tou_front_end($post){
-    global $user_ID, $user_level, $tou_settings;
-    $this_page_id = get_the_ID();
-    if ( ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||  !isset($tou_settings['frontend_page']) || $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $this_page_id || !empty($_COOKIE['terms_user_' . COOKIEHASH])) return; //$user_level == 10 ||
-    $terms_url = (is_numeric($tou_settings['terms_url'])) ? get_permalink($tou_settings['terms_url']) : $tou_settings['terms_url'];
-    die("<script type='text/javascript'>window.location='". add_query_arg('redirected', 'true', $terms_url) ."' </script>");
+function require_tou_front_end($content){
+    global $user_ID, $user_level, $tou_settings, $post;
+    if ( ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||  !isset($tou_settings['frontend_page']) || $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $post->ID || !empty($_COOKIE['terms_user_' . COOKIEHASH])) 
+        return $content;
+        
+    if (is_numeric($tou_settings['terms_url']))
+        return get_tou_include_contents('terms-and-conditions.php', false);
+    else
+        die("<script type='text/javascript'>window.location='". add_query_arg('redirected', 'true', $tou_settings['terms_url']) ."' </script>");
 }
-add_action('loop_start', 'require_tou_front_end');
+add_action('the_content', 'require_tou_front_end');
 
 function set_tou_cookie(){
     global $user_ID, $tou_settings;
@@ -96,14 +99,14 @@ function tou_admin_header(){?>
 
 /*****************************SHORTCODE*****************************/
 function get_tou_terms($atts) {
-    return get_tou_include_contents('terms-and-conditions.php', $display = true); 
+    return get_tou_include_contents('terms-and-conditions.php'); 
 }
 add_shortcode('terms-of-use', 'get_tou_terms');
 
 function check_for_tou_shortcode($content){
     global $post, $tou_settings;
     if ($tou_settings['terms_url'] == $post->ID && $content == '')
-        $content = get_tou_include_contents('terms-and-conditions.php', $display = true);
+        $content = get_tou_include_contents('terms-and-conditions.php');
     
     return $content;
 }
@@ -299,7 +302,7 @@ function set_tou_defaults(){
 }
 register_activation_hook(__FILE__,'set_tou_defaults');
 
-function get_tou_include_contents($filename, $display=false) {
+function get_tou_include_contents($filename, $display=true) {
     if (is_file(TOU_PATH.'/'.$filename)) {
         ob_start();
         include $filename;

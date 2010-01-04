@@ -29,10 +29,7 @@ if (get_usermeta($user_ID, 'terms_and_conditions'))
 $disagree_url = wp_logout_url();   
 if (!is_admin()){
     $disagree_url = get_option('siteurl');
-    if (isset($_GET['redirected']))
-        $show_buttons = true;
-    else
-        $show_buttons = false;
+    $show_buttons = (isset($_GET['redirected']) || (isset($display) && !$display)) ? true : false;
         
     if ($_POST and isset($_POST['terms-and-conditions'])){
         if ($tou_settings['initials'] and !$_POST['initials']){ //the agreement page

@@ -28,8 +28,6 @@ Instead of adding Terms and Conditions to the signup page, this plugin presents 
 
 Feedback and requests are welcome.
 
-Adapted from Levi Putna's Terms of Use plugin.
-
 == Installation ==
 1. Upload `terms-of-use` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu
@@ -44,6 +42,9 @@ Adapted from Levi Putna's Terms of Use plugin.
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
+= 1.11.1 =
+* Changed front-end functionality from a redirect to render terms content on same page. Requires admins to update the Terms of Use settings.
+
 = 1.11.0 =
 * Fixed front-end redirect to work with default permalinks
 * Removed unnecessary javascript from admin

@@ -70,7 +70,7 @@
 				<th scope="row"><label>Other Options</label></th>
 				<td>
 				    <input type="checkbox" name="clear_all" id="clear_all" value="1">
-                    <span class="description">Clear all previous user agreements so users can reaccept terms. Caution: there is no undo.</span><br/>
+                    <span class="description">Clear all previous agreements from logged-in users so they can reaccept terms. Caution: There is no undo. (Does not clear agreements from users who were not logged in at the time of terms acceptance.)</span><br/>
                     <input type="checkbox" name="show_date" id="show_date" value="checked='checked'" <?php echo $show_date ?>>
                     <span class="description">Show date accepted in user profile.</span><br/>
                     
@@ -102,7 +102,7 @@
          	
          	<tr>
          	    <th scope="row"><label>Require Term Agreement to Access:</label></th>
-				<td>Admin Pages
+				<td>Admin Page(s)
 				    <select name="admin_page">
 				        <option value="">Don't require in admin</option>
 				        <?php foreach ($admin_page_list as $page => $page_name){?>
