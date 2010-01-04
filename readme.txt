@@ -4,7 +4,7 @@ Donate link: http://blog.strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, plugin, wordpress, plugin, template
 Requires at least: 2.0
 Tested up to: 2.9
-Stable tag: 1.11.0
+Stable tag: 1.11.1
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
@@ -26,7 +26,7 @@ Instead of adding Terms and Conditions to the signup page, this plugin presents 
 * Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted.
 
 
-Feedback and requests are welcome.
+Feedback, requests, and donations are welcome!
 
 == Installation ==
 1. Upload `terms-of-use` folder to the `/wp-content/plugins/` directory
