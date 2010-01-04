@@ -57,7 +57,12 @@ add_action('admin_head', 'tou_check');
 
 function require_tou_front_end($content){
     global $user_ID, $user_level, $tou_settings, $post;
-    if ( ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||  !isset($tou_settings['frontend_page']) || $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $post->ID || !empty($_COOKIE['terms_user_' . COOKIEHASH])) 
+    
+    if (!isset($tou_settings['frontend_page']) ||
+        $tou_settings['frontend_page'] == '' || $tou_settings['frontend_page'] != $post->ID ||
+        ($user_ID and get_usermeta($user_ID, 'terms_and_conditions')) ||
+        (isset($_COOKIE['terms_user_' . COOKIEHASH]) && !isset($tou_settings['cleared_on'])) || 
+        (isset($_COOKIE['terms_user_' . COOKIEHASH]) && isset($tou_settings['cleared_on']) && isset($_COOKIE['terms_user_date_' . COOKIEHASH]) && (strtotime($tou_settings['cleared_on']) < strtotime($_COOKIE['terms_user_date_' . COOKIEHASH]))))
         return $content;
         
     if (is_numeric($tou_settings['terms_url']))
@@ -69,10 +74,11 @@ add_action('the_content', 'require_tou_front_end');
 
 function set_tou_cookie(){
     global $user_ID, $tou_settings;
-    if ($_POST and isset($_POST['terms-and-conditions']) and !$user_ID and empty($_COOKIE['terms_user_' . COOKIEHASH])){
+    if ($_POST and isset($_POST['terms-and-conditions']) and !$user_ID){
         $terms_cookie_lifetime = apply_filters('terms_cookie_lifetime', 30000000);
-        $cookie_value = ($tou_settings['initials'] and $_POST['initials'])?($_POST['initials']):('agree');
+        $cookie_value = ($tou_settings['initials'] and $_POST['initials'])?($_POST['initials']): 'agree';
         setcookie('terms_user_' . COOKIEHASH, $cookie_value, time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
+        setcookie('terms_user_date_' . COOKIEHASH, current_time('mysql', 1), time() + $terms_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
     }   
 }
 add_action('init', 'set_tou_cookie');
@@ -289,7 +295,7 @@ function set_tou_defaults(){
     $agree = "By clicking \"I agree\" you are indicating that you have read and agree to the above Terms of Use and Privacy Policy.";
     $show_date = "checked='checked'";
     
-    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'show_date' => $show_date, 'initials' => false, 'signup_page' => false, 'comment_form' => false, 'admin_page' => 'index.php', 'frontend_page' => '', 'terms_page' => '', 'menu_page' => 'index.php');
+    $tou_data = array('member_agreement' => $member_agreement, 'terms' => $terms, 'privacy_policy' => $privacy_policy, 'welcome' => $welcome, 'site_name' => $tou_name, 'agree' => $agree, 'cleared_on' => current_time('mysql', 1), 'show_date' => $show_date, 'initials' => false, 'signup_page' => false, 'comment_form' => false, 'admin_page' => 'index.php', 'frontend_page' => '', 'terms_page' => '', 'menu_page' => 'index.php');
     
     
     if(IS_WPMU){
