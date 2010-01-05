@@ -42,6 +42,9 @@ Feedback, requests, and donations are welcome!
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
+= 1.11.2 =
+* Hopefully fixed parse error some users are getting
+
 = 1.11.1 =
 * Changed front-end functionality from a redirect to render terms content on same page. Requires admins to update the Terms of Use settings.
 * Added functionality to the "Clear previous agreement" option, to also require users to agree again if they were not logged in when agreed (agreement saved to a cookie)
