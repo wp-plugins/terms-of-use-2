@@ -6,7 +6,7 @@ Requires at least: 2.0
 Tested up to: 2.9.1
 Stable tag: 1.11.3
 
-Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
+Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms. Alternatively require terms agreement when commenting, or before accessing specified front-end page. 
 
 == Description ==
 Require users to accept your Terms and Conditions in several different ways:
