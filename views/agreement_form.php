@@ -37,5 +37,5 @@
         	    <input type="button" value="I Disagree" onClick="window.location='<?php echo $disagree_url ?>'">
         	</p>
         </form>	    
-<?  }  ?>
+<?php  }  ?>
 </div>

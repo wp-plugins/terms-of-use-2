@@ -36,15 +36,9 @@ if($_POST and isset($_POST['terms'])){
         update_option('tou_options', $tou_data);
         
     $message = "Your settings have been saved.";
-}else{
-    //Fix for old versions that saved 'checked="checked"' instead of '1'
-    foreach(array('show_date', 'initials', 'signup_page', 'comment_form') as $checked_option){
-        if ($tou_settings[$checked_option] == 'checked="checked"')
-            $tou_settings[$checked_option] = 1;
-    }
+}else
     $tou_data = $tou_settings;
-}
-
+    
 	
 $pages = get_posts( array('post_type' => 'page', 'post_status' => 'published', 'numberposts' => 99, 'order_by' => 'post_title', 'order' => 'ASC'));
 $admin_page_list = array('index.php' => 'All Admin pages', 'themes.php' => 'Themes', 'post-new.php' => 'New Post', 'page-new.php' => 'New Page', 'media-new.php' => 'New Media', 'profile.php' => 'Profile');

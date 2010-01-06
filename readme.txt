@@ -1,7 +1,7 @@
 === Terms of Use ===
 Contributors: sswells
 Donate link: http://blog.strategy11.com/donate
-Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, plugin, wordpress, plugin, template
+Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie 
 Requires at least: 2.0
 Tested up to: 2.9.1
 Stable tag: 1.11.2
@@ -9,8 +9,14 @@ Stable tag: 1.11.2
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
 == Description ==
+Require users to accept your Terms and Conditions in several different ways:
+* On signup page
+* When submitting a comment
+* Before accessing a specified page in the back- or front-end
 
-Instead of adding Terms and Conditions to the signup page, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms if the option to require agreement on 'All Admin pages' is selected. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
+In the back-end, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms if the option to require agreement on 'All Admin pages' is selected. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
+
+In the front-end, whether users are logged in or not, they must agree before gaining permission to view the specified page. If not logged in, the agreement date and initials are saved to a cookie.
 
 = Features =
 * Fully customizable Terms and Conditions, Privacy Policy and welcome message.
@@ -42,6 +48,10 @@ Feedback, requests, and donations are welcome!
 3. The welcome page seen after term acceptance.
 
 == Changelog ==
+= 1.11.3 =
+* Replaced all instances of `<?` with `<?php`
+* Fixed bug keeping boxes checked on settings page
+
 = 1.11.2 =
 * Hopefully fixed parse error some users are getting
 

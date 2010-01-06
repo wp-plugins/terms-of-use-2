@@ -1,7 +1,7 @@
 <div class="wrap">
     <div id="icon-edit-pages" class="icon32"><br></div>
 	<h2><?php echo TOU_PLUGIN_TITLE ?> Settings</h2>
-	<?php if ($message){?><div id="message" class="updated fade" style="padding:5px;"><?php echo $message; ?></div><?php } ?>
+	<?php if ($message){ ?><div id="message" class="updated fade" style="padding:5px;"><?php echo $message; ?></div><?php } ?>
     <?php require('nav.php');?>
     <form name="form1" action="?page=<?php echo TOU_PLUGIN_NAME ?>/tou-settings.php" method="post">
         <?php wp_nonce_field('update-options'); ?>
@@ -71,18 +71,18 @@
 				<td>
 				    <input type="checkbox" name="clear_all" id="clear_all" value="1">
                     <span class="description">Clear all previous user agreements so users can reaccept terms. Caution: There is no undo.</span><br/>
-                    <input type="checkbox" name="show_date" id="show_date" value="1" <?php checked($tou_data['show_date'], 1) ?>>
+                    <input type="checkbox" name="show_date" id="show_date" value="1" <?php checked($tou_data['show_date'], '1') ?>>
                     <span class="description">Show date accepted in user profile.</span><br/>
                     
-                    <input type="checkbox" name="initials" id="initials" value="1" <?php checked($tou_data['initials'], 1) ?>>
+                    <input type="checkbox" name="initials" id="initials" value="1" <?php checked($tou_data['initials'], '1') ?>>
                     <span class="description">Show and require user initials on agreement.</span><br/>
                     
-                    <input type="checkbox" name="signup_page" id="signup_page" value="1" <?php checked($tou_data['signup_page'], 1) ?>>
+                    <input type="checkbox" name="signup_page" id="signup_page" value="1" <?php checked($tou_data['signup_page'], '1') ?>>
                     <span class="description">Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below.</span>
                     
                     <?php if (function_exists('add_comment_meta')){ ?>
                     <br/>
-                    <input type="checkbox" name="comment_form" id="comment_form" value="1" <?php checked($tou_data['comment_form'], 1) ?>>
+                    <input type="checkbox" name="comment_form" id="comment_form" value="1" <?php checked($tou_data['comment_form'], '1') ?>>
                     <span class="description">Show and require term agreement on comment form. NOTE: Will not show unless the Terms page is specified below.</span>
                     <?php } ?>
 				</td>
@@ -114,7 +114,7 @@
 				        <option value="">None</option>
 				        <?php foreach ($pages as $page){ ?>
 				            <option value="<?php echo $page->ID ?>" <?php selected($tou_data['frontend_page'], $page->ID) ?>><?php echo $page->post_title ?></option>
-				        <?}?>
+				        <?php } ?>
 				    </select>    
 				</td>
 			</tr>
@@ -126,7 +126,7 @@
 				        <option value=""></option>
 				        <?php foreach ($pages as $page){ ?>
 				            <option value="<?php echo $page->ID ?>"<?php echo ($tou_data['terms_url'] == $page->ID or (!is_numeric($tou_data['terms_url']) && $tou_data['terms_url'] == get_permalink($page->ID)))?(' selected=selected'):(''); ?>><?php echo $page->post_title ?></option>
-				        <?}?>
+				        <?php } ?>
 				    </select><br/>
                     <span class="description">Select front-end terms page if requiring terms agreement for front-end page. Use shortcode [terms-of-use] in your page.</span>
 				</td>
