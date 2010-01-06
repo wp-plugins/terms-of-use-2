@@ -4,7 +4,7 @@ Donate link: http://blog.strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie 
 Requires at least: 2.0
 Tested up to: 2.9.1
-Stable tag: 1.11.2
+Stable tag: 1.11.3
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms.
 
@@ -44,8 +44,8 @@ Feedback, requests, and donations are welcome!
 
 == Screenshots ==
 1. The settings page.
-2. The agreement page. Privacy Policy has been left blank in the example.
-3. The welcome page seen after term acceptance.
+2. The agreement page in the admin. Privacy Policy has been left blank in the example.
+3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
 = 1.11.3 =
