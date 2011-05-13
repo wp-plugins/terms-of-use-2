@@ -36,6 +36,13 @@ class TouAppHelper{
         TouAppHelper::update_user_meta($user_ID, 'terms_and_conditions', $date);
     }
     
+    function clear_agreement($user_ID){
+        delete_user_meta($user_ID, 'terms_and_conditions');
+        delete_user_meta($user_ID, 'tou_initials');
+        setcookie('terms_user_' . COOKIEHASH, '', time()-3600, COOKIEPATH, COOKIE_DOMAIN);
+        setcookie('terms_user_date_' . COOKIEHASH, '', time()-3600, COOKIEPATH, COOKIE_DOMAIN);
+    }
+    
     function get_include_contents($filename, $atts=array()) {
         extract($atts);
             

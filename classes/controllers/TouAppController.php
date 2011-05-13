@@ -126,7 +126,7 @@ class TouAppController{
             $atts[$info] = wpautop(str_replace('[website-url]', $url, $atts[$info]));
         }
         
-        $error = '';
+        $atts['error'] = '';
         $atts['referer'] = (isset($_POST) and isset($_POST['tou_referer'])) ? $_POST['tou_referer'] : $_SERVER['HTTP_REFERER'];
         $atts['initials'] = (isset($_POST) and isset($_POST['initials'])) ? $_POST['initials'] : ''; 
 
@@ -152,10 +152,15 @@ class TouAppController{
                 }
                 	
                 if ($user_ID)
-                    TouAppHelper::save_meta($user_ID, $initials);
+                    TouAppHelper::save_meta($user_ID, $atts['initials']);
                 
-                if(isset($_POST['tou_referrer']))
-                    die("<script type='text/javascript'>location='". $_POST['tou_referrer'] ."' </script>");
+                if(is_page($tou_settings->terms_url)){
+                    $referrer = (isset($_POST['tou_referrer'])) ? $_POST['tou_referrer'] : $url;
+                }else{
+                    global $post;
+                    $referrer = get_permalink($post->ID);
+                }
+                die("<script type='text/javascript'>location='". $referrer ."' </script>");
             }else{
                 if ($atts['show_buttons'])
                     $content .= TouAppHelper::get_include_contents('classes/views/shared/agreement_form.php', $atts);
@@ -211,7 +216,7 @@ class TouAppController{
 
             if (empty($tou_settings->frontend_page) or 
                 ($post and !in_array($post->ID, (array)$tou_settings->frontend_page)) or 
-                ($current_user and $current_user->terms_and_conditions) or
+                ($current_user and isset($current_user->terms_and_conditions)) or
                 (isset($_COOKIE['terms_user_' . COOKIEHASH]) and !isset($tou_settings->cleared_on)) or 
                 (isset($_COOKIE['terms_user_' . COOKIEHASH]) and isset($tou_settings->cleared_on) and isset($_COOKIE['terms_user_date_' . COOKIEHASH]) and (strtotime($tou_settings->cleared_on) < strtotime($_COOKIE['terms_user_date_' . COOKIEHASH]))))
                 return $content; //terms are not required

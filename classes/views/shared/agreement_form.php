@@ -1,4 +1,7 @@
-<?php if (isset($error) and $error){ ?>
+<?php 
+global $tou_settings;
+
+if (isset($error) and $error){ ?>
 <div class="error">
     <span><strong><?php _e('ERROR', 'terms_of_use') ?></strong>: <?php echo $error ?></span>
 </div>
