@@ -1,22 +1,23 @@
 === Terms of Use ===
 Contributors: sswells
-Donate link: http://blog.strategy11.com/donate
+Donate link: http://strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie 
-Requires at least: 2.0
-Tested up to: 2.9.1
+Requires at least: 2.8
+Tested up to: 3.1
 Stable tag: 1.11.3
 
-Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms. Alternatively require terms agreement when commenting, or before accessing specified front-end page. 
+Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms. Alternatively require terms agreement when commenting, or before accessing specified front-end pages. 
 
 == Description ==
 Require users to accept your Terms and Conditions in several different ways:
 * On signup page
 * When submitting a comment
-* Before accessing a specified page in the back- or front-end
+* When submitting any [Formidable](http://wordpress.org/extend/plugins/formidable/ "Formidable") form
+* Before accessing specified pages in the back- or front-end
 
 In the back-end, this plugin presents all users except admins with your terms and conditions the first time they login. The Admin menu is hidden until they accept your terms if the option to require agreement on 'All Admin pages' is selected. Existing users and those added in the admin will also need to agree to the Terms and Conditions on their next log in. After the terms are accepted, users are presented with a fully customizable welcome message to help them get started using WordPress.
 
-In the front-end, whether users are logged in or not, they must agree before gaining permission to view the specified page. If not logged in, the agreement date and initials are saved to a cookie.
+In the front-end, whether users are logged in or not, they must agree before gaining permission to view the specified page(s). If not logged in, the agreement date and initials are saved to a cookie.
 
 = Features =
 * Fully customizable Terms and Conditions, Privacy Policy and welcome message.
@@ -28,18 +29,18 @@ In the front-end, whether users are logged in or not, they must agree before gai
 * Option to require terms agreement on comment form in WordPress version 2.9 and above.
 * Option to clear all agreement dates when the terms are changed so users will need to reaccept terms.
 * Option to show agreement date on profile.
-* Shortcode [terms-of-use] for use in pages or posts for WordPress version 2.8 and above.
+* Shortcode `[terms-of-use]` for use in pages or posts
 * Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted.
 
 
 Feedback, requests, and donations are welcome!
 
 == Installation ==
-1. Upload `terms-of-use` folder to the `/wp-content/plugins/` directory
+1. Upload `terms-of-use-2` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu
 3. Go to the 'Settings' menu and select 'Terms of Use' to customize settings.
 4. Users can view the terms under the 'Dashboard' menu.
-5. Use shortcode [terms-of-use] in pages or posts to avoid duplication of content. (Requires WordPress version 2.8)
+5. Use shortcode [terms-of-use] in pages or posts to avoid duplication of content.
 6. WPMU: Same as above except go to the 'Site Admin' menu and select 'Terms of Use' to customize settings. 
 
 == Screenshots ==
@@ -48,6 +49,14 @@ Feedback, requests, and donations are welcome!
 3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
+= 2.0 =
+* Rewrote plugin code
+* Added [Formidable](http://wordpress.org/extend/plugins/formidable/ "Formidable") integration
+* Added option to require terms for multiple pages
+* Added a PO file for translating. Please send translations to support at strategy11.com
+* Added agreement date to the user listing table
+* Save terms agreement to database if user is logged in when commenting
+
 = 1.11.3 =
 * Replaced all instances of `<?` with `<?php`
 * Fixed bug keeping boxes checked on settings page
