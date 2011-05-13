@@ -140,13 +140,17 @@
 				        <div style="width:50%" class="alignleft">
 				    <?php
 				        $i = 0;
-				        foreach ($pages as $page){ 
+				        foreach ($pages as $page){
+				            if($tou_settings->terms_url == $page->ID)
+				                continue;
+				                
 				            if($i == $half_pages){ ?>
 				        </div>
 				        <div style="width:50%" class="alignright">
 				        <?php    
 				            }
 				            $i++;
+				            
 				        ?>
 				            <input type="checkbox" name="frontend_page[]" value="<?php echo $page->ID ?>" <?php TouAppHelper::checked((array)$tou_settings->frontend_page, $page->ID) ?> /> <?php echo substr($page->post_title, 0, 50) ?><br/>
 				    <?php } ?>  

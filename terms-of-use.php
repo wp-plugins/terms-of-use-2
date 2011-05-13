@@ -25,7 +25,7 @@ define('TOU_HELPERS_PATH', TOU_PATH.'/classes/helpers');
 define('TOU_CONTROLLERS_PATH', TOU_PATH.'/classes/controllers');
 
 define('TOU_URL', WP_PLUGIN_URL.'/terms-of-use-2');
-define('TOU_ADMIN_EDIT_PAGE', (IS_WPMU) ? ('wpmu-admin.php') : ('options-general.php'));
+define('TOU_ADMIN_EDIT_PAGE', 'options-general.php');
 
 require_once(TOU_MODELS_PATH.'/TouSettings.php');
 

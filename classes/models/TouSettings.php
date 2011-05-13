@@ -60,7 +60,9 @@ class TouSettings{
             'frontend_page' => array(),
             'terms_url' => '',
             'menu_page' => 'index.php',
-            'agreement_text' => sprintf(__('I have read and agree to the %1$sTerms & Conditions%2$s', 'terms_of_use'), '<a href="[terms_url]">', '</a>')
+            'agreement_text' => sprintf(__('I have read and agree to the %1$sTerms & Conditions%2$s', 'terms_of_use'), '<a href="[terms_url]">', '</a>'),
+            'terms_error' => __( 'Please accept Terms.', 'terms_of_use' ),
+            'initials_error' => __( 'Please enter your initials.', 'terms_of_use' )
         );
     }
     

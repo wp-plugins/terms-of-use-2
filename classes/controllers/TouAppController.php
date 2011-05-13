@@ -7,8 +7,9 @@ class TouAppController{
         add_filter('the_content', array(&$this, 'check_for_shortcode'), 9);
         if(isset($_GET) and isset($_GET['page']) and preg_match('/terms-of-use*/', $_GET['page'])){
             add_action('admin_init', array(&$this, 'admin_scripts'));
+        }else{
+            add_action('admin_head', array(&$this, 'admin_check'));
         }
-        add_action('admin_head', array(&$this, 'admin_check'));
         
         //insert agreement
         add_action('frm_entry_form', array(&$this, 'add_frm_field'), 100, 3);
@@ -19,7 +20,7 @@ class TouAppController{
         //validate agreement
         add_filter('frm_validate_entry', array(&$this, 'validate_frm_form'), 10, 2);
         add_filter('registration_errors', array(&$this, 'validate_registration'));
-        add_filter('wpmu_validate_user_signup', array(&$this,'validate_regisration')); //WPMU
+        add_filter('wpmu_validate_user_signup', array(&$this,'validate_registration')); //WPMU
         
         //save agreement
         add_action('frm_after_create_entry', array(&$this, 'save_frm_agreement'), 10, 2);
@@ -96,8 +97,7 @@ class TouAppController{
         }
         
         if(!TouAppHelper::get_user_meta($user_ID, 'terms_and_conditions') and 
-            isset($_GET['page']) and !$_GET['page'] == 'terms-of-use/terms-and-conditions' and 
-            (empty($tou_settings->admin_page) or in_array('index.php', (array)$tou_settings['admin_page']) or $current_page)){
+            (empty($tou_settings->admin_page) or in_array('index.php', (array)$tou_settings->admin_page) or $current_page)){
                 
                 die("<script type='text/javascript'>location='". admin_url($tou_settings->menu_page) ."?page=terms-of-use-conditions'</script>");
         }
@@ -251,12 +251,12 @@ class TouAppController{
     function add_hidden_fields(){
         global $user_ID;
         if ($value = TouAppHelper::get_user_meta( $user_id, 'tou_initials' ))
-            echo '<input type="hidden" name="tou_initials" id="tou_initials" value="'.$value.'">';
+            echo '<input type="hidden" name="tou_initials" id="tou_initials" value="'.$value.'" />';
         else if (isset($_POST['tou_initials']) and $_POST['tou_initials'])
-            echo '<input type="hidden" name="tou_initials" id="tou_initials" value="'.$_POST['tou_initials'].'">';
+            echo '<input type="hidden" name="tou_initials" id="tou_initials" value="'.$_POST['tou_initials'].'" />';
 
         if ($value or (isset($_POST['terms']) and $_POST['terms']))
-            echo '<input type="hidden" name="terms" id="terms" value="1">';    
+            echo '<input type="hidden" name="terms" id="terms" value="1" />';    
     }
 
     function validate_frm_form($errors, $values){
@@ -264,32 +264,34 @@ class TouAppController{
 
         if(isset($tou_settings->frm_forms) and in_array($values['form_id'], (array)$tou_settings->frm_forms)){
             if ($tou_settings->initials and !$_POST['tou_initials'])
-                $errors['tou_initials'] = __( 'Please enter your initials.', 'terms_of_use' );
+                $errors['tou_initials'] = $tou_settings->initials_error;
 
             if (!isset($_POST['terms']))
-                $errors['terms'] = __( 'Please accept Terms.', 'terms_of_use' );
+                $errors['terms'] = $tou_settings->terms_error;
         }        
         return $errors;
     }
         
-    function validate_regisration($errors){
+    function validate_registration($errors){
         global $user_ID, $tou_settings;
 
-        if ($tou_settings->signup_page){
-            if ($tou_settings->initials and !$_POST->tou_initials){
-                if (IS_WPMU)
-                    $errors['errors']->add('tou_initials', __( 'Please enter your initials.', 'terms_of_use' ));
-                else
-                    $errors->add('tou_initials', __( '<strong>ERROR</strong>: Please enter your initials.', 'terms_of_use' ));
-            }
+        if(is_admin() or !$tou_settings->signup_page)
+            return $errors;
+            
+        if ($tou_settings->initials and !$_POST['tou_initials']){
+            if (IS_WPMU)
+                $errors['errors']->add('tou_initials', $tou_settings->initials_error);
+            else
+                $errors->add('tou_initials', '<strong>'. __( 'ERROR', 'terms_of_use' ).'</strong>: '. $tou_settings->initials_error);
+        }
 
-            if (!$_POST['terms']){
-                if (IS_WPMU)
-                    $errors['errors']->add('terms', __( 'Please accept Terms.', 'terms_of_use' ));
-                else
-                    $errors->add('terms', __( '<strong>ERROR</strong>: Please accept Terms.', 'terms_of_use' ));   
-            }  
-        }        
+        if (!$_POST['terms']){
+            if (IS_WPMU)
+                $errors['errors']->add('terms', $tou_settings->terms_error);
+            else
+                $errors->add('terms', '<strong>'. __( 'ERROR', 'terms_of_use' ).'</strong>: '. $tou_settings->terms_error );   
+        }
+      
         return $errors;
     }
     
@@ -321,9 +323,13 @@ class TouAppController{
         }   
     }
        
-    function save_registration($user_ID){
+    function save_registration($new_user_ID){
+        global $user_ID;
+        if($user_ID and $user_ID != $new_user_ID)
+            return;
+            
         $initials = (isset($_POST['tou_initials']) and $_POST['tou_initials']) ? $_POST['tou_initials'] : '';
-        TouAppHelper::save_meta($user_ID, $initials);
+        TouAppHelper::save_meta($new_user_ID, $initials);
     }
     
     
@@ -340,7 +346,7 @@ class TouAppController{
     function save_agreement($user_id, $password='', $meta=array()){
         global $wpdb, $tou_settings;
 
-        if (isset($tou_settings->signup_page) and $tou_settings->signup_page){
+        if (isset($tou_settings->signup_page) and $tou_settings->signup_page and !is_admin()){
             $user_email = $wpdb->get_var("SELECT user_email FROM $wpdb->users WHERE ID = $user_id" );
             $signup_data = $wpdb->get_var( "SELECT meta FROM $wpdb->signups WHERE user_email = '$user_email'" );
             $meta = unserialize($signup_data);
@@ -365,10 +371,10 @@ class TouAppController{
 
     	if ($tou_settings->comment_form and $comment_data['comment_type'] == '' ) { // Do not check trackbacks/pingbacks
     	    if (!isset($_POST['terms']))
-                wp_die(__( 'Error: please accept Terms.', 'terms_of_use' ));
+                wp_die('<strong>'. __( 'ERROR', 'terms_of_use' ) .'</strong>: '. $tou_settings->terms_error);
 
     	    if ($tou_settings->initials and !$_POST['tou_initials'])
-                wp_die(__( 'Error: please enter your initials.', 'terms_of_use' ));
+                wp_die('<strong>'. __( 'ERROR', 'terms_of_use' ) .'</strong>: '. $tou_settings->initials_error);
     	}
 
     	return $comment_data;
