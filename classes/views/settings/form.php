@@ -130,7 +130,7 @@
 				            }
 				            $i++;
 				        ?>
-				        <input type="checkbox" name="admin_page[]" value="<?php echo $page ?>" <?php TouAppHelper::checked($page, (array)$tou_settings->admin_page) ?> /> <?php echo $page_name ?><br/>
+				        <input type="checkbox" name="admin_page[]" value="<?php echo $page ?>" <?php TouAppHelper::checked( (array)$tou_settings->admin_page, $page) ?> /> <?php echo $page_name ?><br/>
 				        <?php } ?>
 				        </div>
 				        <div class="clear"></div>
@@ -148,7 +148,7 @@
 				            }
 				            $i++;
 				        ?>
-				            <input type="checkbox" name="frontend_page[]" value="<?php echo $page->ID ?>" <?php TouAppHelper::checked($page->ID, (array)$tou_settings->frontend_page) ?> /> <?php echo substr($page->post_title, 0, 50) ?><br/>
+				            <input type="checkbox" name="frontend_page[]" value="<?php echo $page->ID ?>" <?php TouAppHelper::checked((array)$tou_settings->frontend_page, $page->ID) ?> /> <?php echo substr($page->post_title, 0, 50) ?><br/>
 				    <?php } ?>  
 				        </div>
 				        <div class="clear"></div>
