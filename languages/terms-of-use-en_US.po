@@ -1,0 +1,297 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: classes/controllers/TouAppController.php:70
+#@ terms_of_use
+msgid "Settings"
+msgstr ""
+
+#: classes/controllers/TouAppController.php:148
+#: classes/controllers/TouAppController.php:170
+#@ terms_of_use
+msgid "You must enter your initials"
+msgstr ""
+
+#: classes/controllers/TouAppController.php:261
+#: classes/controllers/TouAppController.php:275
+#@ terms_of_use
+msgid "Please enter your initials."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:264
+#: classes/controllers/TouAppController.php:282
+#@ terms_of_use
+msgid "Please accept Terms."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:277
+#@ terms_of_use
+msgid "<strong>ERROR</strong>: Please enter your initials."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:284
+#@ terms_of_use
+msgid "<strong>ERROR</strong>: Please accept Terms."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:363
+#@ terms_of_use
+msgid "Error: please accept Terms."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:366
+#@ terms_of_use
+msgid "Error: please enter your initials."
+msgstr ""
+
+#: classes/controllers/TouAppController.php:389
+#: classes/views/shared/agreement_form.php:17
+#: classes/views/shared/welcome.php:3
+#: terms-of-use.php:20
+#@ terms_of_use
+msgid "Terms of Use"
+msgstr ""
+
+#: classes/controllers/TouSettingsController.php:8
+#@ terms_of_use
+msgid "Edit"
+msgstr ""
+
+#: classes/controllers/TouSettingsController.php:40
+#@ terms_of_use
+msgid "Settings Saved"
+msgstr ""
+
+#: classes/helpers/TouAppHelper.php:96
+#: classes/helpers/TouAppHelper.php:113
+#: classes/views/shared/agreement_form.php:33
+#@ terms_of_use
+msgid "Initials"
+msgstr ""
+
+#: classes/views/settings/form.php:3
+#@ terms_of_use
+msgid "Terms of Use Settings"
+msgstr ""
+
+#: classes/views/settings/form.php:19
+#@ terms_of_use
+msgid "Website Name"
+msgstr ""
+
+#: classes/views/settings/form.php:22
+#@ terms_of_use
+msgid "Website Name will replace <b>[website-name]</b> in messages when displayed."
+msgstr ""
+
+#: classes/views/settings/form.php:27
+#@ terms_of_use
+msgid "Form Instructions"
+msgstr ""
+
+#: classes/views/settings/form.php:32
+#@ terms_of_use
+msgid "Instructions displayed above terms."
+msgstr ""
+
+#: classes/views/settings/form.php:37
+#@ terms_of_use
+msgid "Terms and Conditions"
+msgstr ""
+
+#: classes/views/settings/form.php:42
+#@ terms_of_use
+msgid "Leaving the Terms blank will remove the \"Terms and Conditions\" box on the agreement page. Use shortcode [terms-of-use] to place in a page or post."
+msgstr ""
+
+#: classes/views/settings/form.php:47
+#: classes/views/shared/agreement_form.php:22
+#@ terms_of_use
+msgid "Privacy Policy"
+msgstr ""
+
+#: classes/views/settings/form.php:52
+#@ terms_of_use
+msgid "Leaving Privacy Policy blank will remove the \"Privacy Policy\" box on the agreement page"
+msgstr ""
+
+#: classes/views/settings/form.php:57
+#@ terms_of_use
+msgid "Welcome Message"
+msgstr ""
+
+#: classes/views/settings/form.php:62
+#@ terms_of_use
+msgid "This message is displayed after the user agrees to the terms and conditions."
+msgstr ""
+
+#: classes/views/settings/form.php:67
+#@ terms_of_use
+msgid "Agreement Instructions"
+msgstr ""
+
+#: classes/views/settings/form.php:70
+#@ terms_of_use
+msgid "Instructions displayed next to check box for user agreement. Link to the terms page will replace <b>[terms-url]</b> when displayed."
+msgstr ""
+
+#: classes/views/settings/form.php:75
+#@ terms_of_use
+msgid "Click \"I Agree\""
+msgstr ""
+
+#: classes/views/settings/form.php:80
+#@ terms_of_use
+msgid "Instructions displayed directly above the \"I Agree\" button."
+msgstr ""
+
+#: classes/views/settings/form.php:85
+#@ terms_of_use
+msgid "Other Options"
+msgstr ""
+
+#: classes/views/settings/form.php:88
+#@ terms_of_use
+msgid "Clear all previous user agreements so users can reaccept terms. Caution: There is no undo."
+msgstr ""
+
+#: classes/views/settings/form.php:90
+#@ terms_of_use
+msgid "Show date accepted in user profile."
+msgstr ""
+
+#: classes/views/settings/form.php:93
+#@ terms_of_use
+msgid "Show and require user initials on agreement."
+msgstr ""
+
+#: classes/views/settings/form.php:96
+#@ terms_of_use
+msgid "Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below."
+msgstr ""
+
+#: classes/views/settings/form.php:101
+#@ terms_of_use
+msgid "Show and require term agreement on comment form. NOTE: Will not show unless the Terms page is specified below."
+msgstr ""
+
+#: classes/views/settings/form.php:107
+#@ terms_of_use
+msgid "Terms Page Admin Menu"
+msgstr ""
+
+#: classes/views/settings/form.php:114
+#@ terms_of_use
+msgid "The admin menu item to place the terms under. This is what users will see. IMPORTANT: Make sure to select a menu item your users have access to. Otherwise, they will be blocked by permissions errors."
+msgstr ""
+
+#: classes/views/settings/form.php:119
+#@ terms_of_use
+msgid "Require Term Agreement to Access"
+msgstr ""
+
+#: classes/views/settings/form.php:120
+#@ terms_of_use
+msgid "Admin Page(s)"
+msgstr ""
+
+#: classes/views/settings/form.php:138
+#@ terms_of_use
+msgid "Front-end Page(s)"
+msgstr ""
+
+#: classes/views/settings/form.php:158
+#@ terms_of_use
+msgid "Formidable Forms"
+msgstr ""
+
+#: classes/views/settings/form.php:160
+#@ terms_of_use
+msgid "Show and require terms in the following forms"
+msgstr ""
+
+#: classes/views/settings/form.php:174
+#@ terms_of_use
+msgid "Terms Page"
+msgstr ""
+
+#: classes/views/settings/form.php:182
+#@ terms_of_use
+msgid "Select front-end terms page if requiring terms agreement for front-end page. Use shortcode [terms-of-use] in your page."
+msgstr ""
+
+#: classes/views/settings/form.php:188
+#@ terms_of_use
+msgid "Save Changes"
+msgstr ""
+
+#: classes/views/shared/agreement_form.php:3
+#@ terms_of_use
+msgid "ERROR"
+msgstr ""
+
+#: classes/views/shared/agreement_form.php:12
+#@ terms_of_use
+msgid "Member Agreement"
+msgstr ""
+
+#: classes/views/shared/agreement_form.php:27
+#@ terms_of_use
+msgid "The Agreement"
+msgstr ""
+
+#: classes/views/shared/agreement_form.php:36
+#@ terms_of_use
+msgid "I Agree"
+msgstr ""
+
+#: classes/views/shared/agreement_form.php:37
+#@ terms_of_use
+msgid "I Disagree"
+msgstr ""
+
+#: classes/views/shared/nav.php:6
+#@ terms_of_use
+msgid "Edit Terms of Use"
+msgstr ""
+
+#: classes/views/shared/nav.php:7
+#@ terms_of_use
+msgid "View Terms of Use"
+msgstr ""
+
+#: classes/views/shared/nav.php:8
+#@ terms_of_use
+msgid "View Welcome Message"
+msgstr ""
+
+#: classes/models/TouSettings.php:63
+#, php-format
+#@ terms_of_use
+msgid "I have read and agree to the %1$sTerms & Conditions%2$s"
+msgstr ""
+
+#: classes/helpers/TouAppHelper.php:132
+#, php-format
+#@ terms_of_use
+msgid "Agreed to site %1$sTerms & Conditions%2$s on %3$s"
+msgstr ""
+
