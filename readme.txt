@@ -9,7 +9,7 @@ Stable tag: 2.0beta
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms. Alternatively require terms agreement when commenting, or before accessing specified front-end pages. 
 
 == Description ==
-Require users to accept your Terms and Conditions in several different ways:
+= Require users to accept your Terms and Conditions in several different ways: =
 * On signup page
 * When submitting a comment
 * When submitting any [Formidable](http://wordpress.org/extend/plugins/formidable/ "Formidable") form
