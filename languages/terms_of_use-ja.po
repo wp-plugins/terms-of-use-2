@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Terms of Use 2.0beta\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-25 15:24+0900\n"
+"PO-Revision-Date: 2011-05-25 17:01+0900\n"
+"Last-Translator: BNG NET <webmaster@bng.net>\n"
+"Language-Team: BNG NET <webmaster@bng.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: terms-of-use.php:20
+#: classes/controllers/TouAppController.php:418
+#: classes/views/shared/agreement_form.php:20
+#: classes/views/shared/welcome.php:3
+msgid "Terms of Use"
+msgstr "利用上の注意"
+
+#: classes/controllers/TouAppController.php:72
+msgid "Settings"
+msgstr "設定"
+
+#: classes/controllers/TouAppController.php:149
+#: classes/controllers/TouAppController.php:176
+msgid "You must enter your initials"
+msgstr "あなたのイニシャルを入力してください"
+
+#: classes/controllers/TouAppController.php:285
+#: classes/controllers/TouAppController.php:292
+#: classes/controllers/TouAppController.php:374
+#: classes/controllers/TouAppController.php:377
+#: classes/views/shared/agreement_form.php:6
+msgid "ERROR"
+msgstr "エラー"
+
+#: classes/controllers/TouAppController.php:430
+msgid "by"
+msgstr "："
+
+#: classes/controllers/TouSettingsController.php:8
+msgid "Edit"
+msgstr "編集"
+
+#: classes/controllers/TouSettingsController.php:40
+msgid "Settings Saved"
+msgstr "設定を保存しました"
+
+#: classes/helpers/TouAppHelper.php:107
+#: classes/helpers/TouAppHelper.php:124
+#: classes/views/shared/agreement_form.php:36
+msgid "Initials"
+msgstr "イニシャル"
+
+#: classes/helpers/TouAppHelper.php:149
+#, php-format
+msgid "Agreed to site %1$sTerms & Conditions%2$s on %3$s"
+msgstr "%3$s、%1$s利用上の注意%2$s同意"
+
+#: classes/models/TouSettings.php:63
+#, php-format
+msgid "I have read and agree to the %1$sTerms & Conditions%2$s"
+msgstr "%1$s利用上の注意%2$sを読んで同意します"
+
+#: classes/models/TouSettings.php:64
+msgid "Please accept Terms."
+msgstr "利用条件にご同意ください。"
+
+#: classes/models/TouSettings.php:65
+msgid "Please enter your initials."
+msgstr "あなたのイニシャルを入力してください。"
+
+#: classes/views/settings/form.php:3
+msgid "Terms of Use Settings"
+msgstr "利用上の注意の設定"
+
+#: classes/views/settings/form.php:19
+msgid "Website Name"
+msgstr "ウェブサイトの名称"
+
+#: classes/views/settings/form.php:22
+msgid "Website Name will replace <b>[website-name]</b> in messages when displayed."
+msgstr "メッセージ中の<b>[website-name]</b>は、実際の表示ではウェブサイトの名称に置き換わります。"
+
+#: classes/views/settings/form.php:27
+msgid "Form Instructions"
+msgstr "利用条件について"
+
+#: classes/views/settings/form.php:32
+msgid "Instructions displayed above terms."
+msgstr "利用条件の前に表示される文章"
+
+#: classes/views/settings/form.php:37
+msgid "Terms and Conditions"
+msgstr "利用上の注意"
+
+#: classes/views/settings/form.php:42
+msgid "Leaving the Terms blank will remove the \"Terms and Conditions\" box on the agreement page. Use shortcode [terms-of-use] to place in a page or post."
+msgstr "利用条件の内容を空にすると、同意のページから \"利用上の注意\" ボックスを取り除きます。ページや記事へ設置するには、 [terms-of-use] というショートコードを使います。"
+
+#: classes/views/settings/form.php:47
+#: classes/views/shared/agreement_form.php:25
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
+
+#: classes/views/settings/form.php:52
+msgid "Leaving Privacy Policy blank will remove the \"Privacy Policy\" box on the agreement page"
+msgstr "プライバシーポリシーの内容を空にすると、同意のページから \"プライバシーポリシー\" ボックスを取り除きます。"
+
+#: classes/views/settings/form.php:57
+msgid "Welcome Message"
+msgstr "ウェルカムメッセージ"
+
+#: classes/views/settings/form.php:62
+msgid "This message is displayed after the user agrees to the terms and conditions."
+msgstr "このメッセージは、ユーザが利用上の注意に同意してから表示されます。"
+
+#: classes/views/settings/form.php:67
+msgid "Agreement Instructions"
+msgstr "同意について"
+
+#: classes/views/settings/form.php:70
+msgid "Instructions displayed next to check box for user agreement. Link to the terms page will replace <b>[terms-url]</b> when displayed."
+msgstr "ユーザが同意するためのチェックボックスの横に表示されます。<b>[terms-url]</b>は、実際の表示では条件のページへのリンクに置き換わります。"
+
+#: classes/views/settings/form.php:75
+msgid "Click \"I Agree\""
+msgstr "\"同意\" のクリック"
+
+#: classes/views/settings/form.php:80
+msgid "Instructions displayed directly above the \"I Agree\" button."
+msgstr "\"同意します\" ボタンの真上に表示されます。"
+
+#: classes/views/settings/form.php:85
+msgid "Other Options"
+msgstr "その他設定"
+
+#: classes/views/settings/form.php:88
+msgid "Clear all previous user agreements so users can reaccept terms. Caution: There is no undo."
+msgstr "以前の同意履歴をクリアし、ユーザによる再同意を求めます。注意： やり直しはできません。"
+
+#: classes/views/settings/form.php:90
+msgid "Show date accepted in user profile."
+msgstr "ユーザプロフィールに同意日を表示する。"
+
+#: classes/views/settings/form.php:93
+msgid "Show and require user initials on agreement."
+msgstr "同意時にユーザのイニシャルの入力を必須にする。"
+
+#: classes/views/settings/form.php:96
+msgid "Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below."
+msgstr "サインアップのページに利用条件を表示し、同意を求める。注意： 以下で利用条件のページを指定している場合に限る。"
+
+#: classes/views/settings/form.php:101
+msgid "Show and require term agreement on comment form. NOTE: Will not show unless the Terms page is specified below."
+msgstr "コメントフォームに利用条件を表示し、同意を求める。注意： 以下で利用条件のページを指定している場合に限る。"
+
+#: classes/views/settings/form.php:107
+msgid "Terms Page Admin Menu"
+msgstr "利用条件のページを表示する管理メニュー"
+
+#: classes/views/settings/form.php:114
+msgid "The admin menu item to place the terms under. This is what users will see. IMPORTANT: Make sure to select a menu item your users have access to. Otherwise, they will be blocked by permissions errors."
+msgstr "利用条件を設置する管理メニューアイテム。ユーザに表示します。重要： ユーザにアクセス権限のあるメニューアイテムを選んでください。さもないと、パーミッションエラーでブロックされます。"
+
+#: classes/views/settings/form.php:119
+msgid "Require Term Agreement to Access"
+msgstr "アクセス時に利用条件の同意を求める"
+
+#: classes/views/settings/form.php:120
+msgid "Admin Page(s)"
+msgstr "管理ページ"
+
+#: classes/views/settings/form.php:138
+msgid "Front-end Page(s)"
+msgstr "フロントエンドページ"
+
+#: classes/views/settings/form.php:162
+msgid "Formidable Forms"
+msgstr "Formidable Forms"
+
+#: classes/views/settings/form.php:164
+msgid "Show and require terms in the following forms"
+msgstr "以下のフォームに利用条件を表示し、同意を求める"
+
+#: classes/views/settings/form.php:178
+msgid "Terms Page"
+msgstr "利用条件のページ"
+
+#: classes/views/settings/form.php:186
+msgid "Select front-end terms page if requiring terms agreement for front-end page. Use shortcode [terms-of-use] in your page."
+msgstr "フロントエンドページで利用条件の同意を求める場合は、フロントエンドでの利用条件のページを選択してください。ページでは、 [terms-of-use] というショートコードを使います。"
+
+#: classes/views/settings/form.php:192
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: classes/views/shared/agreement_form.php:15
+msgid "Member Agreement"
+msgstr "メンバー規約"
+
+#: classes/views/shared/agreement_form.php:30
+msgid "The Agreement"
+msgstr "利用条件"
+
+#: classes/views/shared/agreement_form.php:39
+msgid "I Agree"
+msgstr "同意します"
+
+#: classes/views/shared/agreement_form.php:40
+msgid "I Disagree"
+msgstr "同意しません"
+
+#: classes/views/shared/nav.php:6
+msgid "Edit Terms of Use"
+msgstr "利用上の注意の編集"
+
+#: classes/views/shared/nav.php:7
+msgid "View Terms of Use"
+msgstr "利用上の注意の閲覧"
+
+#: classes/views/shared/nav.php:8
+msgid "View Welcome Message"
+msgstr "ウェルカムメッセージの閲覧"
+
