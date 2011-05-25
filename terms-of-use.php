@@ -5,7 +5,7 @@ Plugin URI: http://strategy11.com/terms-of-use-2-wordpress-plugin/
 Description: Require users to agree to terms and conditions on first login, registration, comment form, or first access to specified page.
 Author: Strategy11
 Author URI: http://strategy11.com
-Version: 2.0beta
+Version: 2.0beta2
 */
 
 // Check for WPMU installation
@@ -15,7 +15,7 @@ if (!defined ('IS_WPMU')){
     define('IS_WPMU', $is_wpmu);
 }
 
-load_plugin_textdomain('terms-of-use', false, 'terms-of-use-2/languages/' );
+load_plugin_textdomain('terms_of_use', false, 'terms-of-use-2/languages/' );
    
 define('TOU_PLUGIN_TITLE', __('Terms of Use', 'terms_of_use'));
 define('TOU_PATH', WP_PLUGIN_DIR.'/terms-of-use-2');

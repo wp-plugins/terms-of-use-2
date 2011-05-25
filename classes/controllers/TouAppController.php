@@ -4,6 +4,7 @@ class TouAppController{
         add_action('admin_menu', array( &$this, 'menu'));
         add_filter( 'plugin_action_links_terms-of-use-2', array( &$this, 'settings_link'), 10, 2 );
         add_shortcode('terms-of-use', array(&$this, 'get_terms'));
+        add_shortcode('privacy-policy', array(&$this, 'get_privacy_policy'));
         add_filter('the_content', array(&$this, 'check_for_shortcode'), 9);
         if(isset($_GET) and isset($_GET['page']) and preg_match('/terms-of-use*/', $_GET['page'])){
             add_action('admin_init', array(&$this, 'admin_scripts'));
@@ -192,6 +193,21 @@ class TouAppController{
             echo $content;
         else
             return $content;
+    }
+    
+    function get_privacy_policy($atts=array()){
+        global $tou_settings;
+        
+        $url = get_bloginfo('url');
+        
+        $tou_name = stripslashes($tou_settings->site_name);
+        if(!$tou_name)
+            $tou_name = get_option('blogname');
+            
+        $privacy = str_replace('[website-name]', $tou_name, stripslashes($tou_settings->privacy_policy));
+        $privacy = wpautop(str_replace('[website-url]', $url, $privacy));
+        
+        return $privacy;
     }
     
     function welcome_message(){
@@ -398,7 +414,7 @@ class TouAppController{
 
 
     /***************************** ADMIN TABLES **********************/
-    function add_commment_column_header($column_headers){
+    function add_comment_column_header($column_headers){
         return $this->add_admin_column_header($column_headers, 'comment');
     }
 

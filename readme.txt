@@ -3,7 +3,7 @@ Contributors: sswells
 Donate link: http://strategy11.com/donate
 Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie 
 Requires at least: 2.8
-Tested up to: 3.1
+Tested up to: 3.2
 Stable tag: 2.0beta
 
 Forces all users (except admins) to agree to your Terms and Conditions on first login and anytime you choose to make them accept new terms. Alternatively require terms agreement when commenting, or before accessing specified front-end pages. 
@@ -35,6 +35,11 @@ In the front-end, whether users are logged in or not, they must agree before gai
 
 Feedback, requests, and donations are welcome!
 
+http://strategy11.com/terms-of-use-2-wordpress-plugin/
+
+= Translations =
+* Japanese ([BNG NET](http://staff.blog.bng.net/ "BNG NET"))
+
 == Installation ==
 1. Upload `terms-of-use-2` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu
@@ -49,7 +54,13 @@ Feedback, requests, and donations are welcome!
 3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
-= 2.0 =
+= 2.0beta2 =
+* Added [privacy-policy] shortcode to insert only the privacy policy on a page
+* Fixed default link from [terms_url] to [terms-url]
+* Corrected language naming conventions to load language files
+* Added Japanese translation ([BNG NET](http://staff.blog.bng.net/ "BNG NET"))
+
+= 2.0beta =
 * Rewrote plugin code
 * Added [Formidable](http://wordpress.org/extend/plugins/formidable/ "Formidable") integration
 * Added option to require terms for multiple pages
