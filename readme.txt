@@ -54,6 +54,11 @@ http://strategy11.com/terms-of-use-2-wordpress-plugin/
 3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
+= 2.0rc1 =
+* Don't return error if editing Formidable entry
+* Show error messages consistently when inserting in a Formidable form
+* Strip slashes from agreement link so the link will work correctly
+
 = 2.0beta2 =
 * Added [privacy-policy] shortcode to insert only the privacy policy on a page
 * Fixed default link from [terms_url] to [terms-url]

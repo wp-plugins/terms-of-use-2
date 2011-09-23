@@ -279,7 +279,10 @@ class TouAppController{
         global $user_ID, $tou_settings;
 
         if(isset($tou_settings->frm_forms) and in_array($values['form_id'], (array)$tou_settings->frm_forms)){
-            if ($tou_settings->initials and !$_POST['tou_initials'])
+            if(isset($values['action']) and $values['action'] == 'update')
+                return $errors;
+                
+            if ($tou_settings->initials and isset($_POST['tou_initials']) and !$_POST['tou_initials'])
                 $errors['tou_initials'] = $tou_settings->initials_error;
 
             if (!isset($_POST['terms']))
@@ -301,7 +304,7 @@ class TouAppController{
                 $errors->add('tou_initials', '<strong>'. __( 'ERROR', 'terms_of_use' ).'</strong>: '. $tou_settings->initials_error);
         }
 
-        if (!$_POST['terms']){
+        if (!isset($_POST['terms'])){
             if (IS_WPMU)
                 $errors['errors']->add('terms', $tou_settings->terms_error);
             else

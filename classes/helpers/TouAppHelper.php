@@ -91,7 +91,7 @@ class TouAppHelper{
             $initials = $_COOKIE['terms_user_' . COOKIEHASH];
         }
                 
-        $agreement_text = str_replace('[terms-url]', $terms_url, $tou_settings->agreement_text);
+        $agreement_text = str_replace(array('[terms-url]', '[terms_url]'), $terms_url, $tou_settings->agreement_text);
         
         if($location == 'formidable'){
         ?> 
@@ -100,12 +100,18 @@ class TouAppHelper{
             <input type="checkbox" id="terms" name="terms" class="checkbox" value="1" style="width:auto;" /> 
             <label for="terms" class="checkbox"><?php echo stripslashes($agreement_text) ?></label>
         </div>
+        <?php if(is_array($errors) and isset($errors['terms'])){ ?>
+        <div class="frm_error"><?php echo $errors['terms'] ?></div>
+        <?php } ?>
         </div> 
 
         <?php if ($tou_settings->initials){ ?>            
         <div id="frm_field_tou_initials_container" class="form-field form-required frm_top_container">
             <label class="frm_primary_label" for="tou_initials"><?php _e('Initials', 'terms_of_use' ) ?></label> 
             <input type="text" name="tou_initials" id="tou_initials" size="4" value="" class="text required" />
+            <?php if(is_array($errors) and isset($errors['tou_initials'])){ ?>
+            <div class="frm_error"><?php echo $errors['tou_initials'] ?></div>
+            <?php } ?>
         </div>
         <?php }
         
@@ -115,7 +121,7 @@ class TouAppHelper{
         <?php } ?>
         
         <p><input type="checkbox" id="terms" name="terms" value="1" <?php echo $checked ?> style="width:auto;"> 
-        <label for="terms" class="checkbox"><?php echo $agreement_text ?></label>
+        <label for="terms" class="checkbox"><?php echo stripslashes($agreement_text) ?></label>
         </p>    
         <?php if ($tou_settings->initials){ 
             if ( IS_WPMU and $location == 'register' and $errmsg = $errors->get_error_message('tou_initials') )
