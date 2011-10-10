@@ -32,9 +32,6 @@ In the front-end, whether users are logged in or not, they must agree before gai
 * Shortcode `[terms-of-use]` for use in pages or posts
 * Select a front-end page to protect. If user is not logged in, a cookie will be set when terms are accepted.
 
-
-Feedback, requests, and donations are welcome!
-
 http://strategy11.com/terms-of-use-2-wordpress-plugin/
 
 = Translations =
@@ -54,6 +51,9 @@ http://strategy11.com/terms-of-use-2-wordpress-plugin/
 3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
+= 2.0rc2 =
+* Don't automatically set users as accepting terms on registration
+
 = 2.0rc1 =
 * Don't return error if editing Formidable entry
 * Show error messages consistently when inserting in a Formidable form

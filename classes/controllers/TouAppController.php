@@ -128,7 +128,7 @@ class TouAppController{
         }
         
         $atts['error'] = '';
-        $atts['referer'] = (isset($_POST) and isset($_POST['tou_referer'])) ? $_POST['tou_referer'] : $_SERVER['HTTP_REFERER'];
+        $atts['referer'] = (isset($_POST) and isset($_POST['tou_referer'])) ? $_POST['tou_referer'] : (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
         $atts['initials'] = (isset($_POST) and isset($_POST['initials'])) ? $_POST['initials'] : ''; 
 
         $atts['show_buttons'] = true;
@@ -343,6 +343,9 @@ class TouAppController{
     }
        
     function save_registration($new_user_ID){
+        if (!isset($_POST['terms']))
+            return;
+            
         global $user_ID;
         if($user_ID and $user_ID != $new_user_ID)
             return;
