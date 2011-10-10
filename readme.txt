@@ -1,7 +1,7 @@
 === Terms of Use ===
 Contributors: sswells
 Donate link: http://strategy11.com/donate
-Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie, Formidable
+Tags: Terms, admin, Use, agreement, Privacy, Policy, WPMU, Conditions, WordPress, plugin, template, comment, registration, signup, reset, cookie, Formidable, protect
 Requires at least: 2.8
 Tested up to: 3.2
 Stable tag: 2.0rc2
