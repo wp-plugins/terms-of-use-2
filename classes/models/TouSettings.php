@@ -87,6 +87,8 @@ class TouSettings{
   	    $this->terms_url = isset($params['terms_url']) ? $params['terms_url'] : ''; 
   	    $this->menu_page = isset($params['menu_page']) ? $params['menu_page'] : 'index.php';
   	    $this->agreement_text = isset($params['agreement_text']) ? $params['agreement_text'] : ''; 
+  	    $this->terms_error = $params['terms_error'];
+  	    $this->initials_error = $params['initials_error'];
   	    
   	    if (isset($params['clear_all']) and $params['clear_all'] == 1){
             global $wpdb;

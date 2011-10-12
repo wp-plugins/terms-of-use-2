@@ -51,6 +51,10 @@ http://strategy11.com/terms-of-use-2-wordpress-plugin/
 3. The welcome page seen after term acceptance in the admin.
 
 == Changelog ==
+= 2.0 =
+* Added error messages to the settings page
+* Updated language files
+
 = 2.0rc2 =
 * Don't automatically set users as accepting terms on registration
 

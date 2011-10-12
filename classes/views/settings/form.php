@@ -131,6 +131,19 @@
                     <span class="description"><?php _e('This message is displayed after the user agrees to the terms and conditions.', 'terms_of_use') ?></span>
 				</td>
          	</tr>
+         	
+         	<tr class="form-field">
+				<th scope="row"><?php _e('Error Messages', 'terms_of_use') ?></th>
+				<td>
+				    <input name="terms_error" id="terms_error" type="text" value="<?php echo esc_attr(stripslashes($tou_settings->terms_error)); ?>" class="regular-text" />
+
+                    <span class="description"><?php _e('Message seen when terms are required but not accepted.', 'terms_of_use') ?></span>
+                    
+				    <input name="initials_error" id="initials_error" type="text" value="<?php echo esc_attr(stripslashes($tou_settings->initials_error)); ?>" class="regular-text" />
+            		</div>
+                    <span class="description"><?php _e('Message seen when initials are required but not submitted.', 'terms_of_use') ?></span>
+				</td>
+         	</tr>
          </table>
          </div>
          </div>

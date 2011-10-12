@@ -40,7 +40,7 @@ msgstr ""
 msgid "Please accept Terms."
 msgstr ""
 
-#: classes/controllers/TouAppController.php:434
+#: classes/controllers/TouAppController.php:440
 #: classes/views/settings/form.php:60
 #: classes/views/shared/agreement_form.php:20
 #: classes/views/shared/welcome.php:3
@@ -59,8 +59,8 @@ msgstr ""
 msgid "Settings Saved"
 msgstr ""
 
-#: classes/helpers/TouAppHelper.php:107
-#: classes/helpers/TouAppHelper.php:124
+#: classes/helpers/TouAppHelper.php:110
+#: classes/helpers/TouAppHelper.php:130
 #: classes/views/shared/agreement_form.php:36
 #@ terms_of_use
 msgid "Initials"
@@ -137,71 +137,71 @@ msgstr ""
 msgid "Instructions displayed directly above the \"I Agree\" button."
 msgstr ""
 
-#: classes/views/settings/form.php:139
+#: classes/views/settings/form.php:152
 #@ terms_of_use
 msgid "Other Options"
 msgstr ""
 
-#: classes/views/settings/form.php:147
+#: classes/views/settings/form.php:160
 #@ terms_of_use
 msgid "Clear all previous user agreements so users can reaccept terms. Caution: There is no undo."
 msgstr ""
 
-#: classes/views/settings/form.php:152
+#: classes/views/settings/form.php:165
 #@ terms_of_use
 msgid "Show date accepted in user profile."
 msgstr ""
 
-#: classes/views/settings/form.php:157
+#: classes/views/settings/form.php:170
 #@ terms_of_use
 msgid "Show and require user initials on agreement."
 msgstr ""
 
-#: classes/views/settings/form.php:162
+#: classes/views/settings/form.php:175
 #@ terms_of_use
 msgid "Show and require term agreement on signup page. NOTE: Will not show unless the Terms page is specified below."
 msgstr ""
 
-#: classes/views/settings/form.php:169
+#: classes/views/settings/form.php:182
 #@ terms_of_use
 msgid "Show and require term agreement on comment form. NOTE: Will not show unless the Terms page is specified below."
 msgstr ""
 
-#: classes/views/settings/form.php:176
+#: classes/views/settings/form.php:189
 #@ terms_of_use
 msgid "Terms Page Admin Menu"
 msgstr ""
 
-#: classes/views/settings/form.php:205
+#: classes/views/settings/form.php:218
 #@ terms_of_use
 msgid "Require Term Agreement to Access"
 msgstr ""
 
-#: classes/views/settings/form.php:209
+#: classes/views/settings/form.php:222
 #@ terms_of_use
 msgid "Admin Page(s)"
 msgstr ""
 
-#: classes/views/settings/form.php:232
+#: classes/views/settings/form.php:245
 #@ terms_of_use
 msgid "Front-end Page(s)"
 msgstr ""
 
-#: classes/views/settings/form.php:188
+#: classes/views/settings/form.php:201
 #@ terms_of_use
 msgid "Terms Page"
 msgstr ""
 
 #: classes/views/settings/form.php:36
-#: classes/views/settings/form.php:281
+#: classes/views/settings/form.php:294
 #@ terms_of_use
 msgid "Save Changes"
 msgstr ""
 
-#: classes/controllers/TouAppController.php:301
-#: classes/controllers/TouAppController.php:308
-#: classes/controllers/TouAppController.php:390
-#: classes/controllers/TouAppController.php:393
+#: classes/controllers/TouAppController.php:304
+#: classes/controllers/TouAppController.php:311
+#: classes/controllers/TouAppController.php:396
+#: classes/controllers/TouAppController.php:399
 #: classes/views/shared/agreement_form.php:6
 #@ terms_of_use
 msgid "ERROR"
@@ -248,13 +248,13 @@ msgstr ""
 msgid "I have read and agree to the %1$sTerms & Conditions%2$s"
 msgstr ""
 
-#: classes/helpers/TouAppHelper.php:149
+#: classes/helpers/TouAppHelper.php:155
 #, php-format
 #@ terms_of_use
 msgid "Agreed to site %1$sTerms & Conditions%2$s on %3$s"
 msgstr ""
 
-#: classes/controllers/TouAppController.php:446
+#: classes/controllers/TouAppController.php:452
 #@ terms_of_use
 msgid "by"
 msgstr ""
@@ -300,23 +300,38 @@ msgstr ""
 msgid "Leaving the Terms blank will remove the \"Terms and Conditions\" box on the agreement page."
 msgstr ""
 
-#: classes/views/settings/form.php:143
+#: classes/views/settings/form.php:156
 #@ terms_of_use
 msgid "Show Terms"
 msgstr ""
 
-#: classes/views/settings/form.php:183
+#: classes/views/settings/form.php:196
 #@ terms_of_use
 msgid "The admin menu item to place the terms under. This is what users will see. <br/>IMPORTANT: Make sure to select a menu item your users have access to. Otherwise, they will be blocked by permissions errors."
 msgstr ""
 
-#: classes/views/settings/form.php:196
+#: classes/views/settings/form.php:209
 #@ terms_of_use
 msgid "Select the page the display your terms. Include the [terms-of-use] shortcode in this page."
 msgstr ""
 
-#: classes/views/settings/form.php:259
+#: classes/views/settings/form.php:272
 #@ terms_of_use
 msgid "Require terms in the checked forms"
+msgstr ""
+
+#: classes/views/settings/form.php:136
+#@ terms_of_use
+msgid "Error Messages"
+msgstr ""
+
+#: classes/views/settings/form.php:140
+#@ terms_of_use
+msgid "Message seen when terms are required but not accepted."
+msgstr ""
+
+#: classes/views/settings/form.php:144
+#@ terms_of_use
+msgid "Message seen when initials are required but not submitted."
 msgstr ""
 
