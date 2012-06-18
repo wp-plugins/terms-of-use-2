@@ -279,7 +279,8 @@ class TouAppController{
         global $user_ID, $tou_settings;
 
         if(isset($tou_settings->frm_forms) and in_array($values['form_id'], (array)$tou_settings->frm_forms)){
-            if(isset($values['action']) and $values['action'] == 'update')
+            $action = isset($_REQUEST['frm_action']) ? 'frm_action' : 'action';
+            if(isset($values[$action]) and $values[$action] == 'update')
                 return $errors;
                 
             if ($tou_settings->initials and isset($_POST['tou_initials']) and !$_POST['tou_initials'])
